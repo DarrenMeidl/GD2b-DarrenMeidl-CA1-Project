@@ -31,4 +31,9 @@ public class PlayerMovement : MonoBehaviour
         body.velocity = new Vector2(body.velocity.x, jumpHeight);
         grounded = false;
     }
+    private void OnCollisionEnter2D(Collision2D other){
+        if(other.gameObject.CompareTag("Ground")){
+            grounded = true;
+        }
+    }
 }
