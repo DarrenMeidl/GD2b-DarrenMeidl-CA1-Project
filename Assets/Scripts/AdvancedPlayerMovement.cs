@@ -15,6 +15,9 @@ public class AdvancedPlayerMovement : MonoBehaviour
     private Rigidbody2D body;
     private Animator anim;
     private bool grounded;
+    private bool canDoubleJump = false;
+    private bool isDashing = false;
+    private bool isCrouching = false;
     private bool facingRight = true;
     // Start is called before the first frame update
     private void Awake()
