@@ -30,16 +30,19 @@ public class AdvancedPlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         grounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
+        
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
-
-        if (Input.GetKey(KeyCode.Space) && grounded){
-            Jump();
-        }
 
         if((horizontalInput > 0 && !facingRight) || (horizontalInput < 0 && facingRight)){
             Flip();
         }
+        
+        if (Input.GetKey(KeyCode.Space) && grounded){
+            Jump();
+        }
+
+        
     }
 
     private void Flip(){
