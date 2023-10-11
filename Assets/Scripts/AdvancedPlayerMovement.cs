@@ -33,6 +33,7 @@ public class AdvancedPlayerMovement : MonoBehaviour
         
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+        anim.SetBool("walk", horizontalInput !=0);
 
         if((horizontalInput > 0 && !facingRight) || (horizontalInput < 0 && facingRight)){
             Flip();
@@ -55,6 +56,7 @@ public class AdvancedPlayerMovement : MonoBehaviour
     private void Jump(){
         body.velocity = new Vector2(body.velocity.x, jumpHeight);
         grounded = false;
+        anim.SetTrigger("jump");
     }
 
 }
