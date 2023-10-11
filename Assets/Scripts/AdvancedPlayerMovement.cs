@@ -6,6 +6,12 @@ public class AdvancedPlayerMovement : MonoBehaviour
 {
     public float speed = 10f;
     public float jumpHeight = 7f;
+    public float dashSpeed = 20f;
+    public float crouchHeight = .5f;
+    public float groundCheckRadius = 0.2f;
+    public Transform groundCheckPoint;
+    public LayerMask whatIsGround;
+
     private Rigidbody2D body;
     private Animator anim;
     private bool grounded;
