@@ -377,6 +377,7 @@ GameObject:
   - component: {fileID: 493517269}
   - component: {fileID: 493517272}
   - component: {fileID: 493517274}
+  - component: {fileID: 493517275}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -539,6 +540,30 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &493517275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493517268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84f81ed38f77ce54b973847718995f1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 4
+  jumpHeight: 8
+  dashSpeed: 20
+  crouchHeight: 0.5
+  groundCheckRadius: 0.2
+  groundCheckPoint: {fileID: 1147613018}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
+  movement: {fileID: 0}
+  shoot: {fileID: 0}
+  pointerPosition: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2269,7 +2294,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1147613018}
   m_Layer: 0
-  m_Name: GroundCheck
+  m_Name: GroundCheck1
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
