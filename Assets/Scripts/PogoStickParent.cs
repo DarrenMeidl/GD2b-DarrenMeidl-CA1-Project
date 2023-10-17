@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,3 +11,4 @@ public class PogoStickParent : MonoBehaviour
         transfor.right = (PointerPosition-(Vector2)transform.position).normalized;
     }
 }
+*/
