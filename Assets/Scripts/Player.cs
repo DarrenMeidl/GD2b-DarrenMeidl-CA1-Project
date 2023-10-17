@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     public float dashSpeed = 20f;
     public float crouchHeight = .5f;
     public float groundCheckRadius = 0.2f;
+    float horizontalInput;
+    float pointerInput;
     public Transform groundCheckPoint;
     public LayerMask whatIsGround;
 
@@ -35,8 +37,9 @@ public class Player : MonoBehaviour
     void Update(){
         grounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
         
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+        pointerInput = GetPointerInput();
+
+        horizontalInput = movement.action.ReadValue<Vector2>();
         anim.SetBool("walk", horizontalInput !=0);
 
         if((horizontalInput > 0 && !facingRight) || (horizontalInput < 0 && facingRight)){
@@ -59,5 +62,11 @@ public class Player : MonoBehaviour
         body.velocity = new Vector2(body.velocity.x, jumpHeight);
         grounded = false;
         anim.SetTrigger("jump");
+    }
+
+    private Vector2 GetPointerInput(){
+        Vector3 mousPos = pointerPosition.action.ReadValue<Vector2>();
+        mousePos.z = Camera.main.nearClipPlane;
+        return Camera.main.ScreenToWorldPoint(mousePos);
     }
 }
