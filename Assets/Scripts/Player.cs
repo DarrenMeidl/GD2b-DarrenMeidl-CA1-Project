@@ -45,10 +45,6 @@ public class Player : MonoBehaviour
         if((horizontalInput > 0 && !facingRight) || (horizontalInput < 0 && facingRight)){
             Flip();
         }
-        
-        if (Input.GetKey(KeyCode.Space) && grounded){
-            Jump();
-        }
     }
 
     private void Flip(){
