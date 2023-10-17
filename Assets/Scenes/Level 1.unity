@@ -561,9 +561,9 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
-  movement: {fileID: 0}
-  shoot: {fileID: 0}
-  pointerPosition: {fileID: 0}
+  movement: {fileID: 8034454945957388478, guid: 7b1b28a703e55004ea578845973997d8, type: 3}
+  attack: {fileID: 974683042928468369, guid: 7b1b28a703e55004ea578845973997d8, type: 3}
+  pointerPosition: {fileID: -8364682827629710853, guid: 7b1b28a703e55004ea578845973997d8, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     private bool facingRight = true;
 
     [SerializeField]
-    private InputActionReference movement, shoot, pointerPosition;
+    private InputActionReference movement, attack, pointerPosition;
 
     // Start is called before the first frame update
     private void Awake()
@@ -32,10 +32,19 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    void FixedUpdate(){
+    void Update(){
+        grounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
+        
         float horizontalInput = Input.GetAxisRaw("Horizontal");
+        body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+        anim.SetBool("walk", horizontalInput !=0);
+
         if((horizontalInput > 0 && !facingRight) || (horizontalInput < 0 && facingRight)){
             Flip();
+        }
+        
+        if (Input.GetKey(KeyCode.Space) && grounded){
+            Jump();
         }
     }
 
@@ -44,5 +53,11 @@ public class Player : MonoBehaviour
         currentScale.x *= -1;
         gameObject.transform.localScale = currentScale;
         facingRight = !facingRight;
+    }
+
+    private void Jump(){
+        body.velocity = new Vector2(body.velocity.x, jumpHeight);
+        grounded = false;
+        anim.SetTrigger("jump");
     }
 }
