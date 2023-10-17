@@ -378,6 +378,7 @@ GameObject:
   - component: {fileID: 493517272}
   - component: {fileID: 493517274}
   - component: {fileID: 493517275}
+  - component: {fileID: 493517276}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -552,8 +553,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84f81ed38f77ce54b973847718995f1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
-  jumpHeight: 8
+  speed: 10
+  jumpHeight: 7
   dashSpeed: 20
   crouchHeight: 0.5
   groundCheckRadius: 0.2
@@ -564,6 +565,22 @@ MonoBehaviour:
   movement: {fileID: 8034454945957388478, guid: 7b1b28a703e55004ea578845973997d8, type: 3}
   attack: {fileID: 974683042928468369, guid: 7b1b28a703e55004ea578845973997d8, type: 3}
   pointerPosition: {fileID: -8364682827629710853, guid: 7b1b28a703e55004ea578845973997d8, type: 3}
+--- !u!114 &493517276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493517268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eab708deef0a124db017ebcafc918c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 2
+  acceleration: 50
+  deacceleration: 100
+  currentSpeed: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2436,7 +2453,6 @@ GameObject:
   - component: {fileID: 1922518692}
   - component: {fileID: 1922518691}
   - component: {fileID: 1922518690}
-  - component: {fileID: 1922518689}
   m_Layer: 0
   m_Name: Player (1)
   m_TagString: Player
@@ -2444,33 +2460,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &1922518689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1922518688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77df838da2fce034cba0b349477f868c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 4
-  jumpHeight: 8
-  dashSpeed: 20
-  crouchHeight: 0.5
-  groundCheckRadius: 0.2
-  groundCheckPoint: {fileID: 966371562}
-  whatIsGround:
-    m_Bits: 64
-  body: {fileID: 0}
-  anim: {fileID: 0}
-  grounded: 0
-  canDoubleJump: 0
-  isDashing: 0
-  isCrouching: 0
-  facingRight: 1
 --- !u!50 &1922518690
 Rigidbody2D:
   serializedVersion: 4

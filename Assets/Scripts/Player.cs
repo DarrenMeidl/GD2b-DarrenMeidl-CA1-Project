@@ -6,10 +6,10 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    public float speed = 10f;
     public float jumpHeight = 7f;
     public float dashSpeed = 20f;
     public float crouchHeight = .5f;
+
     public float groundCheckRadius = 0.2f;
     public Transform groundCheckPoint;
     public LayerMask whatIsGround;
@@ -20,8 +20,8 @@ public class Player : MonoBehaviour
     private bool isCrouching = false;
     private bool facingRight = true;
 
+    private PlayerMover playerMover;
     private Vector2 horizontalInput, pointerInput;
-
     public Vector2 PointerInput => pointerInput;
 
     private Rigidbody2D body;
@@ -43,6 +43,8 @@ public class Player : MonoBehaviour
         pointerInput = GetPointerInput();
 
         horizontalInput = movement.action.ReadValue<Vector2>();
+        GameObject a = Instantiate(playerMover);
+        a.MovementInput = horizontalInput;
         //anim.SetBool("walk", horizontalInput !=0);
 
         /*if((horizontalInput > 0 && !facingRight) || (horizontalInput < 0 && facingRight)){
