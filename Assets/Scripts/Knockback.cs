@@ -10,18 +10,17 @@ public class Knockback : MonoBehaviour
     public Transform player;
 
     
-    void Update(){
+    void FixedUpdate(){
         //direction = player.position - transform.position;
         direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-    }
-    void OnCollisionEnter2D(Collision2D other){
-        if(other.gameObject.tag == "Ground"){
+
+        if(Input.GetKey(KeyCode.F)){
             playerRigidbody = GetComponentInParent<Rigidbody2D>();
             /*moveDirection = playerRigidbody.transform.position - other.transform.position;
             //direction = playerRigidbody.position-transform.position;
             playerRigidbody.AddForce( direction.normalized * 500f);
             Debug.Log("POGO TOUCHED GROUND");*/
-            playerRigidbody.AddForce(direction.normalized * -1200f);
+            playerRigidbody.AddForce(direction.normalized * -400f);
             Debug.Log("POGO TOUCHED GROUND");
         }
     }
