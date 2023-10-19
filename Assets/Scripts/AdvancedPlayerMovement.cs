@@ -44,22 +44,6 @@ public class AdvancedPlayerMovement : MonoBehaviour
     void Update()
     {
         HandleInput();
-
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
-        anim.SetBool("walk", horizontalInput !=0);
-
-        if(Input.GetKeyDown(KeyCode.F)){
-            Attack();
-        }
-
-        if((horizontalInput > 0 && !facingRight) || (horizontalInput < 0 && facingRight)){
-            Flip();
-        }
-        
-        if (Input.GetKey(KeyCode.Space) && grounded){
-            Jump();
-        }
     }
 
     void FixedUpdate()
@@ -84,8 +68,6 @@ public class AdvancedPlayerMovement : MonoBehaviour
         HandleJump();
         HandleAttack();
         HandleMovement();
-        HandleCrouch();
-        HandleDash();
     }
     
     private void HandleAttack(){
@@ -99,9 +81,9 @@ public class AdvancedPlayerMovement : MonoBehaviour
         body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
         anim.SetBool("walk", horizontalInput !=0);
 
-        if(horizontalInput != 0 && grounded){
+        /*if(horizontalInput != 0 && grounded){
             AudioManager.instance.PlayFootstepSound();
-        }
+        }*/
         if((horizontalInput>0 && !facingRight) || (horizontalInput<0 && facingRight)){
             Flip();
         }
@@ -110,11 +92,6 @@ public class AdvancedPlayerMovement : MonoBehaviour
     private void HandleJump(){
         if(Input.GetKey(KeyCode.Space) && grounded){
             Jump();
-            canDoubleJump = true;
-        }
-        else if(Input.GetKeyDown(KeyCode.Space) && canDoubleJump){
-            Jump();
-            canDoubleJump = false;
         }
     }
 
