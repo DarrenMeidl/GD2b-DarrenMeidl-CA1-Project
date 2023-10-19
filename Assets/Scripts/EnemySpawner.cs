@@ -11,8 +11,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Transform[] spawnPoints;   //list of spawnPoint tranforms
     //Fields for storing the max number of enemies we can have & how many enemies are currently in the scene
     [Header("Limit Settings")]
-    [SerializeField] private int maxEnemies = 5; 
-    private int currentEnemies = 0; 
+    [SerializeField] private int maxEnemies = 5;
+    private int currentEnemies = 0;
     
     
     // Start is called before the first frame update
@@ -33,5 +33,8 @@ public class EnemySpawner : MonoBehaviour
 
         currentEnemies++;   //Increases the count of current enemies
     }
-
+    //
+    public void EnemyDied(){
+        currentEnemies--;
+    }
 }

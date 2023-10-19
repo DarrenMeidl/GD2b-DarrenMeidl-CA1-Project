@@ -2480,13 +2480,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   jumpHeight: 8
-  dashSpeed: 20
-  crouchHeight: 0.5
   groundCheckRadius: 0.2
   groundCheckPoint: {fileID: 966371562}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
+  attackDamage: 5
+  attackRange: 1
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &2035994411
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,13 +11,19 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private LayerMask whatIsGround;
     private bool movingRight = true;
     private bool canChangeDirection = true;
-    //Private fields for Rigidbody2D & EnemySpawner
+    //Fields for combat, the enemy's max health & it's current health
+    [Header("Combat Settings")]
+    [SerializeField] private int maxHealth = 5;
+    private int currentHealth;
+
+    //Adding fields for Rigidbody2D & EnemySpawner components
     private Rigidbody2D enemyRigidBody;
     private EnemySpawner spawner;
 
     //Getting 2D rigidbody component
     void Awake(){
         enemyRigidBody = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;  //Sets Enemy's health to the max health value before the game starts, essentially resetting the health back to full
     }
     //Passes in a reference to EnemySpawner, changes our 'spawner' into whatever the passed in 'spawnerReference' is
     public void Initialize(EnemySpawner spawnerReference)
@@ -53,5 +59,19 @@ public class EnemyController : MonoBehaviour
         canChangeDirection = false;
         yield return new WaitForSeconds(0.5f);
         canChangeDirection = true;
+    }
+    //Function that decreases the enemy's current health by whatever damage amount has been passed through & calls the Die() function if the current health has hit 0 or less than 0
+    public void TakeDamage(int damageAmount){
+        currentHealth -= damageAmount;
+        if(currentHealth <= 0){
+            Die();
+        }
+    }
+    //Function that will call the EnemyDied() function from EnemySpawner script to the spawner if it is not null. 
+    public void Die(){
+        if(spawner != null){
+            spawner.EnemyDied();
+        }
+        Destroy(gameObject);    //It then destroys the enemy object
     }
 }
