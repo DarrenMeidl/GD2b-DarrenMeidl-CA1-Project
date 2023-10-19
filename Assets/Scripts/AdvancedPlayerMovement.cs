@@ -4,37 +4,47 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 //Code from Naoise's class
+
+//Require components forces the script to only attach to a gameobject with the set components in this case a 2d rigidbody & animator
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Animator))]
 public class AdvancedPlayerMovement : MonoBehaviour
 {
-    //Fields for Player movement values like speed & jump height
+    //Fields for Player movement values like speed & jump height underneath a header which appears in the inspector tab
+    [Header("Player Settings")]
     public float speed = 10f;
     public float jumpHeight = 7f;
-    //Fields for ground checking
+    //Fields for ground checking underneath a header which appears in the inspector tab
+    [Header("Ground Check")]
     public float groundCheckRadius = 0.2f;
     public Transform groundCheckPoint;
     public LayerMask whatIsGround;
-    //Rigidbody & Animator classes
-    private Rigidbody2D body;
-    private Animator anim;
-    //bools to check things like if Player is grounded, can double jump or if they are facing right
-    private bool grounded;
-    private bool facingRight = true;
-    //Fields for combat like attack range & damage
+    
+    //Fields for combat like attack range & damage underneath a header which appears in the inspector tab
+    [Header("Attacking")]
     [SerializeField] private int attackDamage = 1;
     [SerializeField] private float attackRange = 1f; 
+
     public LayerMask enemyLayers;
     //Gets the player's rigidbody & animator components and sets them to the body & anim fields
+    private Rigidbody2D body;
+    private Animator anim;
+    //private bools to check things like if Player is grounded, can double jump or if they are facing right
+    private bool grounded;
+    private bool facingRight = true;
+    
     private void Awake()
     {
-        body = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        InitializeComponents();
     }
 
     
-    void FixedUpdate()
+
+    // Update is called once per frame
+    void Update()
     {
-        grounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
-        
+        HandleInput();
+
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
         anim.SetBool("walk", horizontalInput !=0);
@@ -50,8 +60,17 @@ public class AdvancedPlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && grounded){
             Jump();
         }
+    }
 
-        
+    void FixedUpdate()
+    {
+        grounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
+    }
+
+    private void InitializeComponents()
+    {
+        body = GetComponent<Rigidbody2D>(); 
+        anim = GetComponent<Animator>();
     }
 
     private void Flip(){
@@ -61,11 +80,51 @@ public class AdvancedPlayerMovement : MonoBehaviour
         facingRight = !facingRight;
     }
 
+    private void HandleInput(){
+        HandleJump();
+        HandleAttack();
+        HandleMovement();
+        HandleCrouch();
+        HandleDash();
+    }
+    
+    private void HandleAttack(){
+        if (Input.GetKeyDown(KeyCode.F)){
+            Attack();
+        }
+    }
+
+    private void HandleMovement(){
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+        anim.SetBool("walk", horizontalInput !=0);
+
+        if(horizontalInput != 0 && grounded){
+            AudioManager.instance.PlayFootstepSound();
+        }
+        if((horizontalInput>0 && !facingRight) || (horizontalInput<0 && facingRight)){
+            Flip();
+        }
+    }
+
+    private void HandleJump(){
+        if(Input.GetKey(KeyCode.Space) && grounded){
+            Jump();
+            canDoubleJump = true;
+        }
+        else if(Input.GetKeyDown(KeyCode.Space) && canDoubleJump){
+            Jump();
+            canDoubleJump = false;
+        }
+    }
+
     private void Jump(){
         body.velocity = new Vector2(body.velocity.x, jumpHeight);
         grounded = false;
         anim.SetTrigger("jump");
     }
+
+
     //This function deals the player's attack damage to any object that is considered an enemy
     void Attack(){
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackRange, enemyLayers); // ?
