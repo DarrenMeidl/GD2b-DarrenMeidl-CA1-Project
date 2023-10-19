@@ -29,7 +29,7 @@ public class EnemySpawner : MonoBehaviour
         GameObject spawnedEnemy = Instantiate(enemyPrefab, spawnPos.position, Quaternion.identity); // ?
         //Creates reference of type EnemyController & equals it to be the EnemyController component of the instantiated enemy
         EnemyController enemyController = spawnedEnemy.GetComponent<EnemyController>();
-        enemyController.Initialize(this);   // ?
+        enemyController.Initialize(this);   //Calls the Initialize() function (passing in this EnemySpawner) from our EnemyController script onto 'enemyController' which had just been set to the spawned enemy's EnemyController component script
 
         currentEnemies++;   //Increases the count of current enemies
     }

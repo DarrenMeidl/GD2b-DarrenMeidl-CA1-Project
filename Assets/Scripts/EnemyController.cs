@@ -11,12 +11,18 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private LayerMask whatIsGround;
     private bool movingRight = true;
     private bool canChangeDirection = true;
-
+    //Private fields for Rigidbody2D & EnemySpawner
     private Rigidbody2D enemyRigidBody;
+    private EnemySpawner spawner;
 
     //Getting 2D rigidbody component
     void Awake(){
         enemyRigidBody = GetComponent<Rigidbody2D>();
+    }
+    //Passes in a reference to EnemySpawner, changes our 'spawner' into whatever the passed in 'spawnerReference' is
+    public void Initialize(EnemySpawner spawnerReference)
+    {
+        spawner = spawnerReference;
     }
 
     //Calls the Move() function every physics frame per second
