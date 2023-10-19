@@ -74,4 +74,13 @@ public class EnemyController : MonoBehaviour
         }
         Destroy(gameObject);    //It then destroys the enemy object
     }
+    //Collision function to test if this enemy object is colliding with Player
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        AdvancedPlayerMovement player = collision.gameObject.GetComponent<AdvancedPlayerMovement>(); //Gets the AdvancedPlayerMovement script component from the passed in 'collision' game object & assigns it to 'player' 
+        if (player != null) //If the player isn't nothing, print the log message below into the console
+        {
+            Debug.Log("Player took damage from enemy!");
+        }
+    }
 }
