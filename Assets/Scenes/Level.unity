@@ -455,7 +455,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2315,8 +2315,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpSound: {fileID: 0}
-  footstepSound: {fileID: 8300000, guid: 337bc7f9e783f5446b06c9689eae1db5, type: 3}
-  attackSound: {fileID: 8300000, guid: bb34d3c4a5c7d284c947c27cc0572adf, type: 3}
+  footstepSound: {fileID: 0}
+  attackSound: {fileID: 0}
   backgroundMusic: {fileID: 8300000, guid: d1d0059440e01c146a4d053b0dc498ad, type: 3}
   soundEffectSource: {fileID: 0}
   backgroundMusicSource: {fileID: 0}
@@ -2375,7 +2375,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1922518694}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 5
+    OrthographicSize: 4
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -2452,6 +2452,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe7e1afd4cc36b4494d94eddc7fdb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPaused: 0
+  isGameOver: 0
 --- !u!1 &1922518688
 GameObject:
   m_ObjectHideFlags: 0
