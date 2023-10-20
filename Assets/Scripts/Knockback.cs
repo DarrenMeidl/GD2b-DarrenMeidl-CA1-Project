@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Knockback : MonoBehaviour
 {
-    private Vector2 moveDirection;
     public Rigidbody2D playerRigidbody;
-    Vector2 direction;
+    private Vector2 direction;
     public Transform player;
 
     
@@ -16,10 +15,6 @@ public class Knockback : MonoBehaviour
 
         if(Input.GetKey(KeyCode.R)){
             playerRigidbody = GetComponentInParent<Rigidbody2D>();
-            /*moveDirection = playerRigidbody.transform.position - other.transform.position;
-            //direction = playerRigidbody.position-transform.position;
-            playerRigidbody.AddForce( direction.normalized * 500f);
-            */
             playerRigidbody.AddForce(direction.normalized * -400f);
             //Debug.Log("POGO TOUCHED GROUND");
         }

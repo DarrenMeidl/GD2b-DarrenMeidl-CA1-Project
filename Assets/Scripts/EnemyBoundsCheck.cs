@@ -6,7 +6,7 @@ public class EnemyBoundsCheck : MonoBehaviour
     [SerializeField] private float minY = -10f;  //This is the minimum y position at which the enemy is considered off the map
     
     [Header("Off Screen Check")]
-    [Tooltip("Extra space before enemy is considered off screen")]
+    [Tooltip("The bonus space before the enemy is considered off screen")]
     [SerializeField] private float screenBuffer = 1.0f;
     //Gets a Camera & EnemyController
     private Camera mainCamera;

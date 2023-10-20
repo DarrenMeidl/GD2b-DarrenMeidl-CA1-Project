@@ -14,7 +14,7 @@ public class EnemyController : MonoBehaviour
     //Fields for combat, the enemy's max health & it's current health
     [Header("Combat Settings")]
     [SerializeField] private int maxHealth = 5;
-    private int currentHealth;
+    [SerializeField]private int currentHealth;
 
     //Adding fields for Rigidbody2D & EnemySpawner components
     private Rigidbody2D enemyRigidBody;

@@ -12,13 +12,13 @@ public class AdvancedPlayerMovement : MonoBehaviour
 {
     //Fields for Player movement values like speed & jump height underneath a header which appears in the inspector tab
     [Header("Player Settings")]
-    public float speed = 10f;
-    public float jumpHeight = 7f;
+    [SerializeField] private float speed = 10f;
+    [SerializeField] private float jumpHeight = 7f;
     //Fields for ground checking underneath a header which appears in the inspector tab
     [Header("Ground Check")]
-    public float groundCheckRadius = 0.2f;
-    public Transform groundCheckPoint;
-    public LayerMask whatIsGround;
+    [SerializeField] private float groundCheckRadius = 0.2f;
+    [SerializeField] private Transform groundCheckPoint;
+    [SerializeField] private LayerMask whatIsGround;
     
     //Fields for combat like attack range & damage underneath a header which appears in the inspector tab
     [Header("Attacking")]
