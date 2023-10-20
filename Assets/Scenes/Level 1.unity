@@ -2315,9 +2315,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpSound: {fileID: 0}
-  footstepSound: {fileID: 0}
-  attackSound: {fileID: 0}
-  backgroundMusic: {fileID: 0}
+  footstepSound: {fileID: 8300000, guid: 7df21c19a248f384eae64abdacc703c9, type: 3}
+  attackSound: {fileID: 8300000, guid: bb34d3c4a5c7d284c947c27cc0572adf, type: 3}
+  backgroundMusic: {fileID: 8300000, guid: d1d0059440e01c146a4d053b0dc498ad, type: 3}
   soundEffectSource: {fileID: 0}
   backgroundMusicSource: {fileID: 0}
 --- !u!4 &1318867303
