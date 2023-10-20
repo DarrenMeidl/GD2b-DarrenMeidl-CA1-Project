@@ -12,6 +12,8 @@ public class AudioManager : MonoBehaviour   //This will be a singleton, only 1 v
     //Seperate audio source for sound effects & background music, this allows background music to continue playing without interruption while other sound effects are playing
     public AudioSource soundEffectSource;
     public AudioSource backgroundMusicSource;
+
+    [SerializeField] private float volume = 1;
     //Awake executes before the game starts
     void Awake(){
         //If the instance is nothing, then the instance will become this object & won't destroy when the scene loads
@@ -30,6 +32,8 @@ public class AudioManager : MonoBehaviour   //This will be a singleton, only 1 v
         backgroundMusicSource.clip = backgroundMusic; //Sets the backgroundMusicSource clip component to whatever the backgroundMusic audio clip is
         backgroundMusicSource.loop = true; //Loops the background music
         backgroundMusicSource.Play(); //Plays the backgroud music source
+
+        SetBackgroundMusicVolume(volume); //Sets the volume before the game starts
     }
     //Plays the jumpSound audio clip on the soundEffectSource audio source once
     public void PlayJumpSound(){
