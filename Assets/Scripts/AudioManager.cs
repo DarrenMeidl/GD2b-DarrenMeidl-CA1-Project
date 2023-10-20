@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-
+//Got this code from Naoise's class
 public class AudioManager : MonoBehaviour   //This will be a singleton, only 1 version exists & can't be destroyed
 {
     public static AudioManager instance;    //Same exact variable (not copy) that can be called across all scripts
