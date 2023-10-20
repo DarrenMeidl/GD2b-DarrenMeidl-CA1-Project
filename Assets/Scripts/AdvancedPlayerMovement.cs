@@ -76,10 +76,10 @@ public class AdvancedPlayerMovement : MonoBehaviour
         float horizontalInput = Input.GetAxisRaw("Horizontal"); //Gets the horizontal axis & stores in a field
         body.velocity = new Vector2(horizontalInput * speed, body.velocity.y); //Adds velocity to the rigidbody by creating a new vector2 which multiplies horizontalInput float by the speed float but keeps the y velocity the same
         anim.SetBool("walk", horizontalInput !=0); //sets the walk bool in the animator to true or false based on whether the horizontalInput field is equal to 0 or not i.e. if player IS moving horizontally (input != 0) then "walk" bool is true thus playing walk animation
-
-        /*if(horizontalInput != 0 && grounded){
+        //If the player is moving & touching the ground then it calls the PlayFootstepSound() function from the AudioManager script
+        if(horizontalInput != 0 && grounded){
             AudioManager.instance.PlayFootstepSound();
-        }*/
+        }
         //If the player is moving right but they're not facing right OR if player is moving left but is facing right then call the Flip() function
         if((horizontalInput>0 && !facingRight) || (horizontalInput<0 && facingRight)){
             Flip();
@@ -103,6 +103,7 @@ public class AdvancedPlayerMovement : MonoBehaviour
         body.velocity = new Vector2(body.velocity.x, jumpHeight); //Adds a new vector2 (keeps the current x position the same but adds 'jumpHeight' to the y velocity) to the current object's rigidbody velocity
         grounded = false; //Sets grounded to false, since player is in the air
         anim.SetTrigger("jump"); //plays the jump animation in the player's Animator
+        AudioManager.instance.PlayJumpSound(); //calls the PlayJumpSound() function from the AudioManager script
     }
 
 
@@ -117,6 +118,7 @@ public class AdvancedPlayerMovement : MonoBehaviour
             if (enemyController != null)
             {
                 enemyController.TakeDamage(attackDamage);
+                AudioManager.instance.PlayAttackSound(); //calls the PlayAttackSound() function from the AudioManager script
                 Debug.Log("Enemy Damaged!");    //Prints message in console, to test if enemy has been damaged
             }
 
