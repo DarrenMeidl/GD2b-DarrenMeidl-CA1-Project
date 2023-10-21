@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour   //This will be a singleton, only 1 v
     public AudioClip jumpSound;
     public AudioClip footstepSound;
     public AudioClip attackSound;
+    public AudioClip enemyAttackSound;
     public AudioClip backgroundMusic;
     //Seperate audio source for sound effects & background music, this allows background music to continue playing without interruption while other sound effects are playing
     public AudioSource soundEffectSource;
@@ -46,6 +47,10 @@ public class AudioManager : MonoBehaviour   //This will be a singleton, only 1 v
     //Plays the attackSound audio clip on the soundEffectSource audio source once
     public void PlayAttackSound(){
         soundEffectSource.PlayOneShot(attackSound);
+    }
+    //Plays the attackSound audio clip on the soundEffectSource audio source once
+    public void PlayEnemyAttackSound(){
+        soundEffectSource.PlayOneShot(enemyAttackSound);
     }
     //If the background music source isn't playing, then call the Play() function on the background music source
     public void PlayBackgroundMusic(){

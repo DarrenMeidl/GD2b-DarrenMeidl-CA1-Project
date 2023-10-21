@@ -87,7 +87,7 @@ public class AdvancedPlayerMovement : MonoBehaviour
     }
     //If the player bool grounded is true & the space key is pressed, call the Jump() function
     private void HandleJump(){
-        if(Input.GetKey(KeyCode.Space) && grounded){
+        if(Input.GetKeyDown(KeyCode.Space) && grounded){
             Jump();
         }
     }

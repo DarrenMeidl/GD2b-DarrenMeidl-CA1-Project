@@ -14,8 +14,11 @@ public class EnemyController : MonoBehaviour
     //Fields for combat, the enemy's max health & it's current health
     [Header("Combat Settings")]
     [SerializeField] private int maxHealth = 5;
-    [SerializeField]private int currentHealth;
+    [SerializeField] private int currentHealth;
+    [SerializeField] private int attackDamage = 1;
+    [SerializeField] private float attackRange = 1f; 
 
+    public LayerMask playerLayers;
     //Adding fields for Rigidbody2D & EnemySpawner components
     private Rigidbody2D enemyRigidBody;
     private EnemySpawner spawner;
@@ -60,6 +63,25 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         canChangeDirection = true;
     }
+
+//This function deals the enemy's attack damage to any object that is considered a player
+    void Attack(){
+        Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(transform.position, attackRange, playerLayers); //Gets list of colliders that fall in a circle (created at the player's position, with a radius of 'attackRange', only in the enemyLayers layer specified in the inspector) & stores them in 'hitPlayers' 
+        foreach (Collider2D player in hitPlayers)    //For every enemy 2d collider that is in the list of hitEnemies collider, it will carry out the code below
+        {
+            //enemyController is assigned the Collider2D enemy's component: EnemyController 
+            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+            //If the playerHealth is not nothing, then it will call the TakeDamage() function from the EnemyController script & pass in the player's field attackDamage which is set above
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(attackDamage);
+                AudioManager.instance.PlayEnemyAttackSound(); //calls the PlayEnemyAttackSound() function from the AudioManager script
+                Debug.Log("Player Damaged!");    //Prints message in console, to test if player has been damaged
+            }
+
+        }
+    }
+
     //Function that decreases the enemy's current health by whatever damage amount has been passed through & calls the Die() function if the current health has hit 0 or less than 0
     public void TakeDamage(int damageAmount){
         currentHealth -= damageAmount;
