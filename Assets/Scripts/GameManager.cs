@@ -8,8 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance; //This is a singleton, this same variable that can be called across all scripts
 
-    [Header("Game States")] //public bools to determine if game is paused or over
-    public bool isPaused;
+    [Header("Game States")] //public bools to determine if game is over
     public bool isGameOver;
     // Awake is called before the game starts
     void Awake()
@@ -27,35 +26,12 @@ public class GameManager : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-        if(Input.GetKeyDown(KeyCode.Escape)){ //If the player hits Escape & the game IS paused, it calls the resume function
-            if(isPaused)
-                ResumeGame();
-            else    //Otherwise, call the pause function which pauses the game
-                PauseGame();
-        }
         if(Input.GetKeyDown(KeyCode.R)){ //If the player hits 'R' then restart the game (this key bind is temporary)
             RestartGame();
-        }
-        if(Input.GetKeyDown(KeyCode.L)){ //If the player hits 'L' then load the main menu scene (this key bind is temporary)
-            LoadMainMenu();
         }
 
     }   
     
-    //This function pauses the game
-    public void PauseGame() //Sets pause bool to true & slows down time to half speed
-    {
-        isPaused = true;
-        Time.timeScale = 0.5f;
-        //this is where I'll put the pause menu 
-    }
-    //This function resumes the game
-    public void ResumeGame() //Sets the pause bool to false & puts the time back to normal real time speed
-    {
-        isPaused = false; 
-        Time.timeScale = 1f; 
-        //this is where I'll turn off the pause menu 
-    }
     //This function ends the game
     public void GameOver()
     {
@@ -67,9 +43,5 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); //Loads a scene by index, the index comes from the current active scene index
     }
-    //This function loads the main menu scene
-    public void LoadMainMenu()
-    {
-        SceneManager.LoadScene("Main Menu"); //Loads the scene by name
-    }
+    
 }
