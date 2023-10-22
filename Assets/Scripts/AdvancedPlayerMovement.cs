@@ -11,21 +11,15 @@ using UnityEngine.UIElements;
 public class AdvancedPlayerMovement : MonoBehaviour
 {
     //Fields for Player movement values like speed & jump height underneath a header which appears in the inspector tab
-    [Header("Player Settings")]
+    [Header("Movement Settings")]
     [SerializeField] private float speed = 10f;
     [SerializeField] private float jumpHeight = 7f;
     //Fields for ground checking underneath a header which appears in the inspector tab
-    [Header("Ground Check")]
+    [Header("Ground Check Settings")]
     [SerializeField] private float groundCheckRadius = 0.2f;
     [SerializeField] private Transform groundCheckPoint;
     [SerializeField] private LayerMask whatIsGround;
     
-    //Fields for combat like attack range & damage underneath a header which appears in the inspector tab
-    [Header("Attacking")]
-    [SerializeField] private int attackDamage = 1;
-    [SerializeField] private float attackRange = 1f; 
-
-    public LayerMask enemyLayers;
     //Gets the player's rigidbody & animator components and sets them to the body & anim fields
     private Rigidbody2D body;
     private Animator anim;
@@ -59,17 +53,11 @@ public class AdvancedPlayerMovement : MonoBehaviour
 
 
     
+    
     //this function calls all the other handleX() type functions, this is to make the code more readable & understable by grouping everything together
     private void HandleInput(){
         HandleJump();
-        HandleAttack();
         HandleMovement();
-    }
-    //this function calls the attack() function only if the specified key is pressed
-    private void HandleAttack(){
-        if (Input.GetKeyDown(KeyCode.F)){
-            Attack();
-        }
     }
     //this function performs the walking movement for the player
     private void HandleMovement(){
@@ -91,6 +79,10 @@ public class AdvancedPlayerMovement : MonoBehaviour
             Jump();
         }
     }
+
+
+
+
     //This function flips the player sprite in the opposite direction
     private void Flip(){
         Vector3 currentScale = gameObject.transform.localScale; //Gets this object's current scale & stores in field
@@ -105,29 +97,4 @@ public class AdvancedPlayerMovement : MonoBehaviour
         anim.SetTrigger("jump"); //plays the jump animation in the player's Animator
         AudioManager.instance.PlayJumpSound(); //calls the PlayJumpSound() function from the AudioManager script
     }
-
-
-    //This function deals the player's attack damage to any object that is considered an enemy
-    void Attack(){
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackRange, enemyLayers); //Gets list of colliders that fall in a circle (created at the player's position, with a radius of 'attackRange', only in the enemyLayers layer specified in the inspector) & stores them in 'hitEnemies' 
-        foreach (Collider2D enemy in hitEnemies)    //For every enemy 2d collider that is in the list of hitEnemies collider, it will carry out the code below
-        {
-            //enemyController is assigned the Collider2D enemy's component: EnemyController 
-            EnemyController enemyController = enemy.GetComponent<EnemyController>();
-            //If the enemyController is not nothing, then it will call the TakeDamage() function from the EnemyController script & pass in the player's field attackDamage which is set above
-            if (enemyController != null)
-            {
-                enemyController.TakeDamage(attackDamage);
-                AudioManager.instance.PlayAttackSound(); //calls the PlayAttackSound() function from the AudioManager script
-                Debug.Log("Enemy Damaged!");    //Prints message in console, to test if enemy has been damaged
-            }
-
-        }
-    }
-    //Function that draws a gizmo in the scene view
-    void OnDrawGizmosSelected(){
-        Gizmos.color = Color.red;   //Sets gizmo colour to red
-        Gizmos.DrawWireSphere(transform.position, attackRange); //Draws a sphere at the player's current position with a radius of whatever 'attackRange' field is set to
-    }
-
 }

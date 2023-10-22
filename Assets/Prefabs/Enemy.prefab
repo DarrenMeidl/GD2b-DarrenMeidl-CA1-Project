@@ -193,6 +193,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   maxHealth: 5
+  currentHealth: 0
+  attackDamage: 1
+  attackRange: 1
+  playerLayers:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!114 &-2833589932661085871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,3 +211,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0309ca2429f7d97488f7ca2bc346ee3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minY: -10
+  screenBuffer: 1
