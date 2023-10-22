@@ -24,7 +24,7 @@ public class AdvancedPlayerMovement : MonoBehaviour
     private Rigidbody2D body;
     private Animator anim;
     //private bools to check things like if Player is grounded, can double jump or if they are facing right
-    private bool grounded;
+    [HideInInspector] public bool grounded;
     private bool facingRight = true;
     
     //Awake executes before the game starts

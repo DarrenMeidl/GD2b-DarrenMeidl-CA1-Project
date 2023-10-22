@@ -7,13 +7,16 @@ public class Knockback : MonoBehaviour
     public Rigidbody2D playerRigidbody;
     private Vector2 direction;
     public Transform player;
+    private AdvancedPlayerMovement player1;
 
-    
-    void FixedUpdate(){
+    void Awake(){
+        player1 = GetComponentInParent<AdvancedPlayerMovement>();
+    }
+    void FixedUpdate(){ 
         //direction = player.position - transform.position;
         direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 
-        if(Input.GetKey(KeyCode.R)){
+        if(Input.GetKey(KeyCode.K) && player1.grounded){
             playerRigidbody = GetComponentInParent<Rigidbody2D>();
             playerRigidbody.AddForce(direction.normalized * -400f);
             //Debug.Log("POGO TOUCHED GROUND");
