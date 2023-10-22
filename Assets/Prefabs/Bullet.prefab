@@ -165,3 +165,5 @@ MonoBehaviour:
   bulletSpeed: 5
   damage: 5
   rb: {fileID: 2737669949695163801}
+  objA: {fileID: 0}
+  objB: {fileID: 1225057800869877387}

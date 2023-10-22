@@ -20,6 +20,8 @@ public class AdvancedPlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundCheckPoint;
     [SerializeField] private LayerMask whatIsGround;
     
+    public Transform objA;
+
     //Gets the player's rigidbody & animator components and sets them to the body & anim fields
     private Rigidbody2D body;
     private Animator anim;
@@ -79,10 +81,15 @@ public class AdvancedPlayerMovement : MonoBehaviour
             Jump();
         }
     }
+    
 
 
 
 
+    //Function that moves Player transform to the bullet's transform
+    public void MoveToBullet(){
+        gameObject.transform.position = objA.position;
+    }
     //This function flips the player sprite in the opposite direction
     private void Flip(){
         transform.Rotate(0f, 180f, 0f); //Flips player sprite by rotating current transform on the y axis

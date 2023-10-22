@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //I got all this code from Naoise's class
+
+//Require components forces the script to only attach to a gameobject with the set components in this case a 2d rigidbody
+[RequireComponent(typeof(Rigidbody2D))]
 public class EnemyController : MonoBehaviour
 {
+    
     //Fields for movement, speed, checking distance from ground, whatIsGround layermask, 2 bools to see if Enemy is moving right & if it can change direction
     [Header("All Movement Settings")]
     [SerializeField] private float moveSpeed = 5f;
