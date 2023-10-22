@@ -85,9 +85,7 @@ public class AdvancedPlayerMovement : MonoBehaviour
 
     //This function flips the player sprite in the opposite direction
     private void Flip(){
-        Vector3 currentScale = gameObject.transform.localScale; //Gets this object's current scale & stores in field
-        currentScale.x *= -1;   //multiplies the field by -1
-        gameObject.transform.localScale = currentScale; //Gets this object's current scale & sets it to whatever values the field is
+        transform.Rotate(0f, 180f, 0f); //Flips player sprite by rotating current transform on the y axis
         facingRight = !facingRight; //sets the bool to the opposite of itself to indicate if it's turned right or not
     }
     //Function that makes the player jump

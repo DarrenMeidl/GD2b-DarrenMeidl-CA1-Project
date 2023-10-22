@@ -1,25 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//Code from unity tutorial, link: https://www.youtube.com/watch?v=wkKsl1Mfp5M&ab_channel=Brackeys
 public class PogoStickController : MonoBehaviour
 {
     private bool facingRight = true;
     public Transform bulletSpawnPoint;
     public GameObject bulletPrefab;
-    public float bulletSpeed = 1;
     //Called before game starts, sets the rotation of the pogo stick to be 90 degrees
     void Awake(){
-        gameObject.transform.Rotate(0, 0, 90);
+        
     }
-
+    //If player presses the key specified, calls the shoot function
     void Update(){
         if(Input.GetKeyDown(KeyCode.N)){
-            var bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
-            bullet.GetComponent<Rigidbody2D>().velocity = bulletSpawnPoint.position * bulletSpeed;
+            Shoot();
         }
     }
 
+    public void Shoot(){
+        Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation); //Spawns clone of Bullet prefab at the bulletSpawnPoint transform position & rotation
+    }
 
 
     /* OLD ROTATE BY MOUSE FUNCTION
