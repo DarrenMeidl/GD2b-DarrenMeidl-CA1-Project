@@ -6,20 +6,30 @@ public class PogoStickController : MonoBehaviour
 {
     private bool facingRight = true;
     public Transform bulletSpawnPoint;
-    public GameObject bulletPrefab;
+    public GameObject bulletPrefab; //Reference to Bullet Prefab
+    public GameObject bulletTeleporterPrefab; //Reference to TeleporterBullet Prefab
     //Called before game starts, sets the rotation of the pogo stick to be 90 degrees
     void Awake(){
         
     }
-    //If player presses the key specified, calls the shoot function
+    
     void Update(){
+        //If player presses the key specified, calls the Shoot() function
         if(Input.GetKeyDown(KeyCode.N)){
             Shoot();
+        }
+        //If player presses the key specified, calls the ShootTeleporter() function
+        if(Input.GetKeyDown(KeyCode.M)){
+            ShootTeleporter();
         }
     }
 
     public void Shoot(){
         Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation); //Spawns clone of Bullet prefab at the bulletSpawnPoint transform position & rotation
+    }
+
+    public void ShootTeleporter(){
+        Instantiate(bulletTeleporterPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation); //Spawns clone of TeleporterBullet prefab at the bulletSpawnPoint transform position & rotation
     }
 
 

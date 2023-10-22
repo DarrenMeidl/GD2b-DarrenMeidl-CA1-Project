@@ -441,6 +441,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpawnPoint: {fileID: 979495303}
   bulletPrefab: {fileID: 6155304887228297728, guid: 72a7de3bf5b49de4c85ad28dcf61331f, type: 3}
+  bulletTeleporterPrefab: {fileID: 6155304887228297728, guid: 10642349213616b4faf426d25b9f08fa, type: 3}
 --- !u!114 &304507882
 MonoBehaviour:
   m_ObjectHideFlags: 0

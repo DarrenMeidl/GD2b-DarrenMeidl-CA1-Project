@@ -38,6 +38,10 @@ public class AdvancedPlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //This is for testing purpose, will group later
+        if (Input.GetKeyDown(KeyCode.G)){
+            transform.position = TeleporterBullet.contactPoint; //Changes player position to the contactPoint position
+        }
         HandleInput();  //HandleInput() function is used in update as it makes controls & inputs more responsive in gameplay
     }
 
@@ -86,10 +90,7 @@ public class AdvancedPlayerMovement : MonoBehaviour
 
 
 
-    //Function that moves Player transform to the bullet's transform
-    public void MoveToBullet(){
-        gameObject.transform.position = objA.position;
-    }
+
     //This function flips the player sprite in the opposite direction
     private void Flip(){
         transform.Rotate(0f, 180f, 0f); //Flips player sprite by rotating current transform on the y axis
