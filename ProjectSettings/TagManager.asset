@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - GameOver
+  - BeatGame
   layers:
   - Default
   - TransparentFX

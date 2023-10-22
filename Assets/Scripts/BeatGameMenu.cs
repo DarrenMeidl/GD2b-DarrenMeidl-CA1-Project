@@ -18,7 +18,12 @@ public class BeatGameMenu : MonoBehaviour
             beatGameMenu.SetActive(true);
         }
     }
-
+    
+    //Game is beaten & BeatGameMenu will be shown
+    public void EndGame(){
+        isBeaten = true;
+        beatGameMenu.SetActive(true);
+    }
     //This function restarts the game
     public void RestartGame()
     {
