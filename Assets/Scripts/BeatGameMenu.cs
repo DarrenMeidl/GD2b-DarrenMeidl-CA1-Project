@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class BeatGameMenu : MonoBehaviour
 {
     public GameObject beatGameMenu; //Used to reference beatGameMenu object
-    public bool isBeaten; //public bool to determines if game is beaten or not
+    public static bool isBeaten; //public bool to determines if game is beaten or not
     // Awake is called before the game starts
     void Awake(){ //Game is not beaten & BeatGameMenu will be hidden before game starts
         isBeaten = false;

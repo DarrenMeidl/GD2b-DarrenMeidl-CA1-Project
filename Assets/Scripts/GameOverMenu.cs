@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameOverMenu : MonoBehaviour
 {
     public GameObject gameoverMenu; //Used to reference GameOverMenu object
-    public bool isDead; //public bool to determines if player is dead or not
+    public static bool isDead; //public bool to determines if player is dead or not
     // Awake is called before the game starts
     void Awake(){ //Player is not dead, time is set to normal & GameOverMenu object will be hidden before game starts
         isDead = false;

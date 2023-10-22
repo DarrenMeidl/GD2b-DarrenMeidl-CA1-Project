@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu; //Used to reference PauseMenu object
-    public bool isPaused; //public bool to determines if game is paused or not
+    public static bool isPaused; //public bool to determines if game is paused or not
     // Awake is called before the game starts
     void Awake(){ //Game is not paused & PauseMenu will be hidden before game starts
         isPaused = false;

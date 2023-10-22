@@ -42,7 +42,9 @@ public class AdvancedPlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G)){
             transform.position = TeleporterBullet.contactPoint; //Changes player position to the contactPoint position
         }
-        HandleInput();  //HandleInput() function is used in update as it makes controls & inputs more responsive in gameplay
+        if(PauseMenu.isPaused == false && BeatGameMenu.isBeaten == false && GameOverMenu.isDead == false){
+            HandleInput();  //HandleInput() function is used in update as it makes inputs more responsive. FixedUpdate is better for physics related code
+        }
     }
 
     void FixedUpdate()
