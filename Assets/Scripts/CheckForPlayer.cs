@@ -9,7 +9,7 @@ public class CheckForPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        beatGameMenu = GameObject.FindGameObjectWithTag("GameOver").GetComponent<BeatGameMenu>(); 
+        
     }
 
     // Update is called once per frame
