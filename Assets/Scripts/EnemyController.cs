@@ -41,7 +41,11 @@ public class EnemyController : MonoBehaviour
     //Calls the Move() function every physics frame per second
     void FixedUpdate()
     {
-        Move();
+        //Added my own if statement to account for the Turret type Enemy
+        EnemyPSController enemyTurret = GetComponentInChildren<EnemyPSController>(); //Created reference of type EnemyPSController
+        if (enemyTurret == null){ //If this object has a child object with EnemyPSController component, then they must have a pogostick (which means they are a turret)
+            Move(); //Will only call this if this object IS NOT a turret
+        }
     }
     //Function that controls Enemy movement
     void Move(){

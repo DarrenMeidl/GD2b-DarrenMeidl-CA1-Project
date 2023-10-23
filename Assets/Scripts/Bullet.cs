@@ -9,23 +9,24 @@ public class Bullet : MonoBehaviour
 {
     //Fields for getting rigidbody of bullet & speed
     public float bulletSpeed = 5;
-    public int damage = 5;
+    public int damage = 1;
     public Rigidbody2D rb;
-    public static bool hasHit;
 
     void Start(){
         //Transforms the bullet's rigidbody by the opposite of the green axis multiplied by the bulletSpeed amount
         rb.velocity = (transform.up * -1) * bulletSpeed;
-        hasHit = false;
     }
 
 
-    //When bullet hits another collider, execute code
+    //When bullet hits another collider, execute code. I added extra functionality by also checking for a player object, so I can reuse this bullet prefab for the enemy turret
     void OnTriggerEnter2D(Collider2D hitInfo){
-        EnemyController enemy = hitInfo.GetComponent<EnemyController>();
-        hasHit = true;
-        if (enemy != null){
+        EnemyController enemy = hitInfo.GetComponent<EnemyController>(); //Grabs EnemyController component from other collider, if there is one
+        PlayerHealth player = hitInfo.GetComponent<PlayerHealth>(); //Grabs PlayerHealth component from other collider, if there is one
+        if (enemy != null){ //If this isn't nothing, so IS an object with EnemyController script, make it take damage
             enemy.TakeDamage(damage);
+        }
+        else if (player != null){ //If this isn't nothing, so IS an object with PlayerHealth script, make it take damage
+            player.TakeDamage(damage);
         }
         Debug.Log(hitInfo.name); //Testing purposes, Prints name of object hit
         Destroy(gameObject);
