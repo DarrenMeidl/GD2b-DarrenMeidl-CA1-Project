@@ -12,17 +12,20 @@ public class TeleporterBullet : MonoBehaviour
     public int damage = 5;
     public Rigidbody2D rb;
     public static Vector2 contactPoint;
+    public static bool hasContacted;
     void Start(){
         //Transforms the bullet's rigidbody by the opposite of the green axis multiplied by the bulletSpeed amount
         rb.velocity = (transform.up * -1) * bulletSpeed;
+        hasContacted = false; //Tells whether bullet has made contact with Ground or not
     }
 
 
     //When bullet hits another collider, execute code
     void OnCollisionEnter2D(Collision2D hitInfo){
-        contactPoint = hitInfo.GetContact(0).point;
-        Debug.Log("THIS IS: " + contactPoint);
-        Debug.Log(hitInfo.GetContact(0).point);
-        Destroy(gameObject);
+        contactPoint = hitInfo.GetContact(0).point; //Get point of contact where this object collided with the other object
+        hasContacted = true; //has hit the Ground object
+        Debug.Log("THIS IS: " + contactPoint); //Testing
+        Debug.Log(hitInfo.GetContact(0).point); //Testing
+        Destroy(gameObject); //Destroys bullet
     }
 }

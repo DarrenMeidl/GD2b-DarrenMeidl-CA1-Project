@@ -21,10 +21,10 @@ public class AdvancedPlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask whatIsGround;
     
     public Transform objA;
-
     //Gets the player's rigidbody & animator components and sets them to the body & anim fields
     private Rigidbody2D body;
     private Animator anim;
+    public static Vector2 playerPos;
     //private bools to check things like if Player is grounded, can double jump or if they are facing right
     [HideInInspector] public bool grounded;
     private bool facingRight = true;
@@ -39,8 +39,9 @@ public class AdvancedPlayerMovement : MonoBehaviour
     void Update()
     {
         //This is for testing purpose, will group later
-        if (Input.GetKeyDown(KeyCode.G)){
+        if (Input.GetKeyDown(KeyCode.G) || TeleporterBullet.hasContacted == true){
             transform.position = TeleporterBullet.contactPoint; //Changes player position to the contactPoint position
+            TeleporterBullet.hasContacted = false; //Resets hasContacted bool to prevent player endlessly teleporting to contact point
         }
         if(PauseMenu.isPaused == false && BeatGameMenu.isBeaten == false && GameOverMenu.isDead == false){
             HandleInput();  //HandleInput() function is used in update as it makes inputs more responsive. FixedUpdate is better for physics related code

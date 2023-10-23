@@ -4,8 +4,7 @@ using UnityEngine;
 //Code from unity tutorial, link: https://www.youtube.com/watch?v=wkKsl1Mfp5M&ab_channel=Brackeys
 public class PogoStickController : MonoBehaviour
 {
-    private bool facingRight = true;
-    public Transform bulletSpawnPoint;
+    public Transform bulletSpawnPoint; //Reference to bullet spawn point
     public GameObject bulletPrefab; //Reference to Bullet Prefab
     public GameObject bulletTeleporterPrefab; //Reference to TeleporterBullet Prefab
     //Called before game starts, sets the rotation of the pogo stick to be 90 degrees
