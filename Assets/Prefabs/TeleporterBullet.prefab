@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2737669949695163801}
   - component: {fileID: 8182975285033924120}
   - component: {fileID: 7337107066138612848}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TeleporterBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
