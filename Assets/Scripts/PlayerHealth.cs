@@ -10,10 +10,10 @@ public class PlayerHealth : MonoBehaviour
     private int attackDamage;
     [SerializeField] private float attackRange = 1f;
     [SerializeField] private int maxAttackDamage = 5;
-
+    //HealthBar will access these fields
     [Header("Health Settings")]
-    [SerializeField] private int maxHealth = 5;
-    [SerializeField] private int currentHealth;
+    public static int playerMaxHealth = 3;
+    public static int currentPlayerHealth; 
 
     public LayerMask enemyLayers; //Refence to a Layer, which will be set in the inspector
     private GameOverMenu gom; //private reference to a game object of type GameOverMenu
@@ -21,7 +21,7 @@ public class PlayerHealth : MonoBehaviour
     // Awake is called before the game starts
     void Awake(){
         attackDamage = maxAttackDamage; //Sets current attack damage to full
-        currentHealth = maxHealth; //Sets current health to full
+        currentPlayerHealth = playerMaxHealth; //Sets current health to full
         gom = GameObject.FindGameObjectWithTag("GameOver").GetComponent<GameOverMenu>(); //Finds GameOverMenu object through tag "GameOver" & sets it to 'gom' reference
     }
     
@@ -79,9 +79,9 @@ public class PlayerHealth : MonoBehaviour
 
     //Function that decreases the players's current health by whatever damage amount has been passed through & calls the GameOver() function if the current health has hit 0 or less than 0
     public void TakeDamage(int damageAmount){
-        currentHealth -= damageAmount;
+        currentPlayerHealth -= damageAmount;
         Debug.Log("PLAYER TOOK DAMAGE"); //Test to see if player is taking damage or not
-        if(currentHealth <= 0){
+        if(currentPlayerHealth <= 0){
             gom.GameOver(); //Calls this function from the GameOverMenu script
         }
     }
