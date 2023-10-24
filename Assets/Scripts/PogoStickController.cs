@@ -7,27 +7,36 @@ public class PogoStickController : MonoBehaviour
     public Transform bulletSpawnPoint; //Reference to bullet spawn point
     public GameObject bulletPrefab; //Reference to Bullet Prefab
     public GameObject bulletTeleporterPrefab; //Reference to TeleporterBullet Prefab
-    //Called before game starts, sets the rotation of the pogo stick to be 90 degrees
-    void Awake(){
-        
-    }
     
     void Update(){
+        if(PauseMenu.isPaused == false && BeatGameMenu.isBeaten == false && GameOverMenu.isDead == false){
+            HandleInput();  //HandleInput() function is used in update as it makes inputs more responsive. FixedUpdate is better for physics related code
+        }
+    }
+    private void HandleInput(){
+        HandleShoot();
+        HandleShootTeleporter();
+    }
+    private void HandleShoot(){
         //If player presses the key specified, calls the Shoot() function
         if(Input.GetKeyDown(KeyCode.N)){
             Shoot();
         }
-        //If player presses the key specified, calls the ShootTeleporter() function
-        if(Input.GetKeyDown(KeyCode.M)){
+    }
+
+    private void HandleShootTeleporter(){
+        //If player presses the key specified & there are no teleporter bullets, calls the ShootTeleporter() function
+        if(Input.GetKeyDown(KeyCode.M) && TeleporterBullet.bulletCount == 0){
+            TeleporterBullet.bulletCount = TeleporterBullet.bulletCount + 1; //Adds 1 bullet to the teleporter bulletCount
             ShootTeleporter();
         }
     }
-
-    public void Shoot(){
+    //Creates clone of whatever prefab bulletPrefab is set to in inspector
+    private void Shoot(){
         Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation); //Spawns clone of Bullet prefab at the bulletSpawnPoint transform position & rotation
     }
-
-    public void ShootTeleporter(){
+    //Creates clone of whatever prefab bulletTeleporterPrefab is set to in inspector
+    private void ShootTeleporter(){
         Instantiate(bulletTeleporterPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation); //Spawns clone of TeleporterBullet prefab at the bulletSpawnPoint transform position & rotation
     }
 

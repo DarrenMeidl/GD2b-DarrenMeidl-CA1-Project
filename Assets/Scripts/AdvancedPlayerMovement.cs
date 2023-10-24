@@ -34,15 +34,14 @@ public class AdvancedPlayerMovement : MonoBehaviour
     {
         InitializeComponents(); //Calls the InitializeComponents() function
     }
+    //When the scene with this object loads, the bulletCount will be set to 0
+    public void Start(){
+        TeleporterBullet.bulletCount = 0;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        //This is for testing purpose, will group later
-        if (Input.GetKeyDown(KeyCode.G) || TeleporterBullet.hasContacted == true){
-            transform.position = TeleporterBullet.contactPoint; //Changes player position to the contactPoint position
-            TeleporterBullet.hasContacted = false; //Resets hasContacted bool to prevent player endlessly teleporting to contact point
-        }
         if(PauseMenu.isPaused == false && BeatGameMenu.isBeaten == false && GameOverMenu.isDead == false){
             HandleInput();  //HandleInput() function is used in update as it makes inputs more responsive. FixedUpdate is better for physics related code
         }
@@ -51,6 +50,7 @@ public class AdvancedPlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         grounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround); //Grounded bool is based around a 2d overlapcircle which is created on the position of the groundcheck object, radius set by groundCheckRadius float & only checks on the whatIsGround layer (set in player object in inspector)
+        HandleTeleport();
     }
     //This function gets the Rigidbody2D & Animator components of this object
     private void InitializeComponents()
@@ -61,8 +61,13 @@ public class AdvancedPlayerMovement : MonoBehaviour
 
 
 
-    
-    
+    //Functions handles teleporting
+    private void HandleTeleport(){
+        if (Input.GetKeyDown(KeyCode.G) || TeleporterBullet.hasContacted == true){
+            transform.position = TeleporterBullet.contactPoint; //Changes player position to the contactPoint position
+            TeleporterBullet.hasContacted = false; //Resets hasContacted bool to prevent player endlessly teleporting to contact point
+        }
+    }
     //this function calls all the other handleX() type functions, this is to make the code more readable & understable by grouping everything together
     private void HandleInput(){
         HandleJump();
