@@ -8,17 +8,29 @@ using UnityEngine;
 public class TeleporterBulletSlow : MonoBehaviour
 {
     //Fields for getting rigidbody of bullet & speed
-    public float bulletSpeed = 5;
+    public float bulletSpeed = 5f;
     public Rigidbody2D rb;
     //Public static fields
     public static Vector2 contactPointSlow;
     public static bool hasContactedSlow;
     public static int bulletCountSlow;
+    public static bool bulletIsMovingSlow;
+
     void Start(){
         //Transforms the bullet's rigidbody by the opposite of the green axis multiplied by the bulletSpeed amount
         rb.velocity = (transform.up * -1) * bulletSpeed;
         hasContactedSlow = false; //Tells whether bullet has made contact with Ground or not
+
     }
+
+    void Update(){
+            Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        if(Input.GetKeyDown(KeyCode.F) && hasContactedSlow == false){
+            rb.velocity = direction.normalized * bulletSpeed;
+        }
+    }
+
+    
 
     //When bullet hits another collider, execute code
     void OnCollisionEnter2D(Collision2D hitInfo){
