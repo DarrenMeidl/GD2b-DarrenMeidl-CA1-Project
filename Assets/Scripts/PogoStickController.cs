@@ -65,14 +65,17 @@ public class PogoStickController : MonoBehaviour
 
     //Creates clone of whatever prefab bulletPrefab is set to in inspector
     private void Shoot(){
+        AudioManager.instance.PlayAttackSound();
         Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation); //Spawns clone of Bullet prefab at the bulletSpawnPoint transform position & rotation
     }
     //Creates clone of whatever prefab bulletTeleporterPrefab is set to in inspector
     private void ShootTeleporter(){
+        AudioManager.instance.PlayAttackSound();
         Instantiate(bulletTeleporterPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation); //Spawns clone of TeleporterBullet prefab at the bulletSpawnPoint transform position & rotation
     }
     //Creates clone of whatever prefab bulletTeleporterSlowPrefab is set to in inspector
     private void ShootSlowTeleporter(){
+        AudioManager.instance.PlayAttackSound();
         Instantiate(bulletTeleporterSlowPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation); //Spawns clone of TeleporterBullet prefab at the bulletSpawnPoint transform position & rotation
     }
 

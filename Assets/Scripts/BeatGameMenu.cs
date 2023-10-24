@@ -17,6 +17,7 @@ public class BeatGameMenu : MonoBehaviour
     public void EndGame(){
         isBeaten = true;
         beatGameMenu.SetActive(true);
+        AudioManager.instance.PlayGameFinishedSound();
     }
     //This function restarts the game
     public void RestartGame()

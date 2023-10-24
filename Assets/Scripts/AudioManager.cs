@@ -5,21 +5,32 @@ public class AudioManager : MonoBehaviour   //This will be a singleton, only 1 v
 {
     public static AudioManager instance;    //Same exact variable (not copy) that can be called across all scripts
     //Audio clips for jumping, walking, attacking, & background music
-    [Header("Audio Clips")]
+    [Header("Player Audio Clips")]
     public AudioClip jumpSound;
     public AudioClip footstepSound;
     public AudioClip attackSound;
+    public AudioClip takeDamageSound;
+
+    [Header("Enemy Audio Clips")]
     public AudioClip enemyAttackSound;
+    public AudioClip enemyTakeDamageSound;
+
+    [Header("Other Audio Clips")]
     public AudioClip backgroundMusic;
-    //Seperate audio source for sound effects, player walking & background music, this allows background music to continue playing without interruption while other sound effects are playing
+    public AudioClip gameOverSound;
+    public AudioClip beatGameSound;
+    //Seperate audio source for player & enemy sound effects, player walking & background music, this allows background music to continue playing without interruption while other sound effects are playing
     [Header("Audio Sources")]
-    public AudioSource soundEffectSource;
+    public AudioSource playerSoundEffectSource;
+    public AudioSource enemySoundEffectSource;
     public AudioSource walkSoundEffectSource;
     public AudioSource backgroundMusicSource;
 
     [Header("Volume Settings")]
     [SerializeField] private float volume = 1; //Adjust volume for background music
     [SerializeField] private float volume1 = 1; //Footstep volume
+    [SerializeField] private float volume2 = 1; //Player sounds volume
+    [SerializeField] private float volume3 = 1; //Enemy sounds volume
 
     
     
@@ -35,7 +46,8 @@ public class AudioManager : MonoBehaviour   //This will be a singleton, only 1 v
             return;
         }
         //Adds audio source components to this game object
-        soundEffectSource = gameObject.AddComponent<AudioSource>(); //Sound effects
+        enemySoundEffectSource = gameObject.AddComponent<AudioSource>(); //Sound effects for enemy
+        playerSoundEffectSource = gameObject.AddComponent<AudioSource>(); //Sound effects for player
         walkSoundEffectSource = gameObject.AddComponent<AudioSource>(); //Sound effects
         backgroundMusicSource = gameObject.AddComponent<AudioSource>(); //Music
 
@@ -46,30 +58,77 @@ public class AudioManager : MonoBehaviour   //This will be a singleton, only 1 v
         //Sets the volumes before the game starts
         SetBackgroundMusicVolume(volume); 
         SetFootstepSoundVolume(volume1);
+        SetPlayerSoundsVolume(volume2);
+        SetEnemySoundsVolume(volume3);
     }
-    //Plays the jumpSound audio clip on the soundEffectSource audio source once
+
+
+
+    //PLAYER SOUNDS
+    //Plays the jumpSound audio clip on the playerSoundEffectSource audio source once
     public void PlayJumpSound(){
-        soundEffectSource.PlayOneShot(jumpSound);
+        playerSoundEffectSource.PlayOneShot(jumpSound);
     }
     //Plays the footstepSound audio clip on the walkSoundEffectSource audio source once
     public void PlayFootstepSound(){
         walkSoundEffectSource.PlayOneShot(footstepSound);
 
     }
-    //Plays the attackSound audio clip on the soundEffectSource audio source once
+    //Plays the attackSound audio clip on the playerSoundEffectSource audio source once
     public void PlayAttackSound(){
-        soundEffectSource.PlayOneShot(attackSound);
+        playerSoundEffectSource.PlayOneShot(attackSound);
     }
-    //Plays the attackSound audio clip on the soundEffectSource audio source once
+    //Plays the takeDamageSound audio clip on the playerSoundEffectSource audio source once
+    public void PlayTakeDamageSound(){
+        playerSoundEffectSource.PlayOneShot(takeDamageSound);
+    }
+
+
+    
+
+
+
+
+    //ENEMY SOUNDS
+    //Plays the enemyAttackSound audio clip on the enemySoundEffectSource audio source once
     public void PlayEnemyAttackSound(){
-        soundEffectSource.PlayOneShot(enemyAttackSound);
+        enemySoundEffectSource.PlayOneShot(enemyAttackSound);
     }
-    //If the background music source isn't playing, then call the Play() function on the background music source
+    //Plays the enemyTakeDamageSound audio clip on the enemySoundEffectSource audio source once
+    public void PlayEnemyTakeDamageSound(){
+        enemySoundEffectSource.PlayOneShot(enemyTakeDamageSound);
+    }
+
+
+
+
+
+
+    //OTHER SOUNDS
+    //If the background music source isn't already playing, then call the Play() function on the background music source
     public void PlayBackgroundMusic(){
         if(!backgroundMusicSource.isPlaying){
             backgroundMusicSource.Play();
         }
     }
+    //Play the gameOverSound audio clip on the playerSoundEffectSource audio source once
+    public void PlayGameOverSound(){
+        playerSoundEffectSource.PlayOneShot(gameOverSound);
+    }
+    //Play the beatGameSound audio clip on the playerSoundEffectSource audio source once
+    public void PlayGameFinishedSound(){
+        playerSoundEffectSource.PlayOneShot(beatGameSound);
+    }
+
+
+
+    
+
+
+
+
+
+    //OTHER FUNCTIONS
     //Pauses the background music source
     public void PauseBackgroundMusic(){
         backgroundMusicSource.Pause();
@@ -78,6 +137,8 @@ public class AudioManager : MonoBehaviour   //This will be a singleton, only 1 v
     public void StopBackgroundMusic(){
         backgroundMusicSource.Stop();
     }
+
+    
     //Passes in a volume float, gets the background music source volume & sets it to the volume float
     public void SetBackgroundMusicVolume(float volume){
         backgroundMusicSource.volume = volume;
@@ -85,5 +146,13 @@ public class AudioManager : MonoBehaviour   //This will be a singleton, only 1 v
     //Passes in a volume float, gets the walk sound effect source volume & sets it to the volume float
     public void SetFootstepSoundVolume(float volume1){
         walkSoundEffectSource.volume = volume1;
+    }
+    //Passes in a volume float, gets the walk sound effect source volume & sets it to the volume float
+    public void SetPlayerSoundsVolume(float volume2){
+        playerSoundEffectSource.volume = volume2;
+    }
+    //Passes in a volume float, gets the walk sound effect source volume & sets it to the volume float
+    public void SetEnemySoundsVolume(float volume3){
+        enemySoundEffectSource.volume = volume3;
     }
 }

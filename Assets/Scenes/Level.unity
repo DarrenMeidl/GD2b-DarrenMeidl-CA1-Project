@@ -3588,16 +3588,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be11ed30f61ffc449b1fbf470cf72672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpSound: {fileID: 0}
+  jumpSound: {fileID: 8300000, guid: 989e8a8c8b05b7d4e81623fd75c847ab, type: 3}
   footstepSound: {fileID: 8300000, guid: 4c67a7cf3fc21f34e994c927f741d92e, type: 3}
-  attackSound: {fileID: 0}
-  enemyAttackSound: {fileID: 0}
+  attackSound: {fileID: 8300000, guid: d7929b9f11586d541bb4be9d7c9ffbb8, type: 3}
+  takeDamageSound: {fileID: 8300000, guid: b0232094ae7922a47a1b069c1765e9d1, type: 3}
+  enemyAttackSound: {fileID: 8300000, guid: fb65eb6e43559ff4e8ece125ab24db4c, type: 3}
+  enemyTakeDamageSound: {fileID: 8300000, guid: 6990886ef82035a4c94b9418e2cecad0, type: 3}
   backgroundMusic: {fileID: 8300000, guid: d1d0059440e01c146a4d053b0dc498ad, type: 3}
-  soundEffectSource: {fileID: 0}
+  gameOverSound: {fileID: 8300000, guid: d1e0a6fd5194a334cb2277c0e0ec1bd9, type: 3}
+  beatGameSound: {fileID: 8300000, guid: dd3b0097f1739ff41bfa236cbc402db3, type: 3}
+  playerSoundEffectSource: {fileID: 0}
+  enemySoundEffectSource: {fileID: 0}
   walkSoundEffectSource: {fileID: 0}
   backgroundMusicSource: {fileID: 0}
-  volume: 0.15
-  volume1: 0.05
+  volume: 2
+  volume1: 1
+  volume2: 1
+  volume3: 1
 --- !u!4 &1318867303
 Transform:
   m_ObjectHideFlags: 0

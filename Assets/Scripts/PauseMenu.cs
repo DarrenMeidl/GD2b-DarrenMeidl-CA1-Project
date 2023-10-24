@@ -26,12 +26,14 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
+        AudioManager.instance.PauseBackgroundMusic();
     }
     //This function resumes the game
     public void ResumeGame(){  //Deactivates PauseMenu object, sets time to normal speed & sets pause bool to false
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+        AudioManager.instance.PlayBackgroundMusic();
     }
 
     //This function loads the main menu scene, closes the pause menu if it's still open & sets isPaused to false

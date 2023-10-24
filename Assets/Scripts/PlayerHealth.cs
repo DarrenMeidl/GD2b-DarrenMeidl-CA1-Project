@@ -24,27 +24,33 @@ public class PlayerHealth : MonoBehaviour
         currentPlayerHealth = playerMaxHealth; //Sets current health to full
         gom = GameObject.FindGameObjectWithTag("GameOver").GetComponent<GameOverMenu>(); //Finds GameOverMenu object through tag "GameOver" & sets it to 'gom' reference
     }
-    
-   
-    void Update()
-    {
-        HandleInput();  //HandleInput() function is used in update as it makes controls & inputs more responsive in gameplay
-    }
-    
 
-
-    //this function calls all the other handleX() type functions, this is to make the code more readable & understable by grouping everything together
-    public void HandleInput(){
-        HandleTakeDamage();
-        //HandleAttack();
-    }
-    //Function that checks if Player has taken damage & calls the TakeDamage() function
-    public void HandleTakeDamage(){
-        //If player presses the 'I' key, it will call the TakeDamage() function
-        if(Input.GetKeyDown(KeyCode.I)){
-            TakeDamage(attackDamage);
+    //Function that decreases the players's current health by whatever damage amount has been passed through & calls the GameOver() function if the current health has hit 0 or less than 0
+    public void TakeDamage(int damageAmount){
+        AudioManager.instance.PlayTakeDamageSound();
+        currentPlayerHealth -= damageAmount;
+        Debug.Log("PLAYER TOOK DAMAGE"); //Test to see if player is taking damage or not
+        if(currentPlayerHealth <= 0){
+            gom.GameOver(); //Calls this function from the GameOverMenu script
         }
     }
+
+
+    //Collision function to test if this player object is colliding with an enemy
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        EnemyController enemy = collision.gameObject.GetComponent<EnemyController>(); //Gets the EnemyController script component from the passed in 'collision' game object & assigns it to 'enemy' 
+        if (enemy != null) //If the enemy isn't nothing, print the log message below into the console
+        {
+            Debug.Log("Player collided with enemy!");
+
+        }
+    }
+
+
+
+
+
 
     /*//this function calls the attack() function only if the specified key is pressed
     public void HandleAttack(){
@@ -76,25 +82,4 @@ public class PlayerHealth : MonoBehaviour
         Gizmos.color = Color.red;   //Sets gizmo colour to red
         Gizmos.DrawWireSphere(transform.position, attackRange); //Draws a sphere at the player's current position with a radius of whatever 'attackRange' field is set to
     }*/
-
-    //Function that decreases the players's current health by whatever damage amount has been passed through & calls the GameOver() function if the current health has hit 0 or less than 0
-    public void TakeDamage(int damageAmount){
-        currentPlayerHealth -= damageAmount;
-        Debug.Log("PLAYER TOOK DAMAGE"); //Test to see if player is taking damage or not
-        if(currentPlayerHealth <= 0){
-            gom.GameOver(); //Calls this function from the GameOverMenu script
-        }
-    }
-
-
-    //Collision function to test if this player object is colliding with an enemy
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        EnemyController enemy = collision.gameObject.GetComponent<EnemyController>(); //Gets the EnemyController script component from the passed in 'collision' game object & assigns it to 'enemy' 
-        if (enemy != null) //If the enemy isn't nothing, print the log message below into the console
-        {
-            Debug.Log("Player collided with enemy!");
-
-        }
-    }
 }

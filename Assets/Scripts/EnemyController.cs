@@ -92,6 +92,7 @@ public class EnemyController : MonoBehaviour
 
     //Function that decreases the enemy's current health by whatever damage amount has been passed through & calls the Die() function if the current health has hit 0 or less than 0
     public void TakeDamage(int damageAmount){
+        AudioManager.instance.PlayEnemyTakeDamageSound();
         currentHealth -= damageAmount;
         if(currentHealth <= 0){
             Die();

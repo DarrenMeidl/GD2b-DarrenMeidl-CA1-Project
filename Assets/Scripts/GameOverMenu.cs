@@ -19,6 +19,7 @@ public class GameOverMenu : MonoBehaviour
         isDead=true; //Sets the game over bool to true
         gameoverMenu.SetActive(true); //Activates Death Screen
         Time.timeScale = 0f; //Stops time
+        AudioManager.instance.PlayGameOverSound();
     }
 
     //This function restarts the game
