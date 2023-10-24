@@ -67,6 +67,10 @@ public class AdvancedPlayerMovement : MonoBehaviour
             transform.position = TeleporterBullet.contactPoint; //Changes player position to the contactPoint position
             TeleporterBullet.hasContacted = false; //Resets hasContacted bool to prevent player endlessly teleporting to contact point
         }
+        if (Input.GetKeyDown(KeyCode.O) || TeleporterBulletSlow.hasContactedSlow == true){
+            transform.position = TeleporterBulletSlow.contactPointSlow; //Changes player position to the contactPointSlow position
+            TeleporterBulletSlow.hasContactedSlow = false; //Resets hasContactedSlow bool to prevent player endlessly teleporting to contact point
+        }
     }
     //this function calls all the other handleX() type functions, this is to make the code more readable & understable by grouping everything together
     private void HandleInput(){

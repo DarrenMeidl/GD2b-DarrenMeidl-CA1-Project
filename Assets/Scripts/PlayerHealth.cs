@@ -36,7 +36,7 @@ public class PlayerHealth : MonoBehaviour
     //this function calls all the other handleX() type functions, this is to make the code more readable & understable by grouping everything together
     public void HandleInput(){
         HandleTakeDamage();
-        HandleAttack();
+        //HandleAttack();
     }
     //Function that checks if Player has taken damage & calls the TakeDamage() function
     public void HandleTakeDamage(){
@@ -46,15 +46,15 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    //this function calls the attack() function only if the specified key is pressed
+    /*//this function calls the attack() function only if the specified key is pressed
     public void HandleAttack(){
         if (Input.GetKeyDown(KeyCode.F)){
             Debug.Log("YOU HIT F");
             Attack();
         }
-    }
+    }*/
 
-    //This function deals the player's attack damage to any object that is considered an enemy
+    /*//This function deals the player's attack damage to any object that is considered an enemy
     void Attack(){
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackRange, enemyLayers); //Gets a collider that's within in a circle (created at the player's position, with a radius of 'attackRange', only in the layer specified in the inspector) & stores it in the 'hitEnemies' collider list
         foreach (Collider2D enemy in hitEnemies)    //For every 2d collider (called enemy) that is in the list of hitEnemies 2d colliders, it will carry out the code below
@@ -75,7 +75,7 @@ public class PlayerHealth : MonoBehaviour
     void OnDrawGizmosSelected(){
         Gizmos.color = Color.red;   //Sets gizmo colour to red
         Gizmos.DrawWireSphere(transform.position, attackRange); //Draws a sphere at the player's current position with a radius of whatever 'attackRange' field is set to
-    }
+    }*/
 
     //Function that decreases the players's current health by whatever damage amount has been passed through & calls the GameOver() function if the current health has hit 0 or less than 0
     public void TakeDamage(int damageAmount){

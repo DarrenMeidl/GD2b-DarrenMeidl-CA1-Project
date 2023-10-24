@@ -13,13 +13,6 @@ public class GameOverMenu : MonoBehaviour
         Time.timeScale = 1f;
         gameoverMenu.SetActive(false);
     }
-    // Update is called once per frame
-    void Update(){
-        if(Input.GetKeyDown(KeyCode.T)){ //If player hits T key, executes GameOver() function (testing purposes)
-            GameOver();
-        }
-        
-    }
     //This function ends the game
     public void GameOver()
     {

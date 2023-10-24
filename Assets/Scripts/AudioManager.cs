@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 //Got this code from Naoise's class
+//Got timer code from tutorial, link: https://dennisse-pd.medium.com/how-to-create-a-cooldown-system-in-unity-4156f3a842ae
 public class AudioManager : MonoBehaviour   //This will be a singleton, only 1 version exists & can't be destroyed
 {
     public static AudioManager instance;    //Same exact variable (not copy) that can be called across all scripts
@@ -13,8 +14,17 @@ public class AudioManager : MonoBehaviour   //This will be a singleton, only 1 v
     //Seperate audio source for sound effects & background music, this allows background music to continue playing without interruption while other sound effects are playing
     public AudioSource soundEffectSource;
     public AudioSource backgroundMusicSource;
-
+    //Adjust volume for background music
     [SerializeField] private float volume = 1;
+
+    [Header("Cooldowns")]
+    //Walk Timer
+    [SerializeField] private float cooldownA = 1f; //Delays the time between plays
+    private float nextShotA = 1f; //Determines if audio manager can play clip again, we can tell if 1 second passed using this variable
+    
+    
+    
+    
     //Awake executes before the game starts
     void Awake(){
         //If the instance is nothing, then the instance will become this object & won't destroy when the scene loads

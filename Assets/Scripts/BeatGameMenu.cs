@@ -12,12 +12,6 @@ public class BeatGameMenu : MonoBehaviour
         isBeaten = false;
         beatGameMenu.SetActive(false);
     }
-    // Update is called once per frame
-    void Update(){
-        if(Input.GetKeyDown(KeyCode.E)){ //If player hits E key, sets beatGameMenu to true (testing purposes)
-            beatGameMenu.SetActive(true);
-        }
-    }
     
     //Game is beaten & BeatGameMenu will be shown
     public void EndGame(){

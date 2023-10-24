@@ -401,8 +401,10 @@ MonoBehaviour:
   bulletSpawnPoint: {fileID: 979495303}
   bulletPrefab: {fileID: 6155304887228297728, guid: 72a7de3bf5b49de4c85ad28dcf61331f, type: 3}
   bulletTeleporterPrefab: {fileID: 6155304887228297728, guid: 10642349213616b4faf426d25b9f08fa, type: 3}
+  bulletTeleporterSlowPrefab: {fileID: 6155304887228297728, guid: cb9be83ba52c608458abc5b87d8a7f27, type: 3}
   cooldownA: 1
   cooldownB: 0.5
+  cooldownC: 1
 --- !u!1 &311435286
 GameObject:
   m_ObjectHideFlags: 0

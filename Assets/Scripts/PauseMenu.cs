@@ -20,9 +20,6 @@ public class PauseMenu : MonoBehaviour
             else    //Otherwise, call the pause function which pauses the game
                 PauseGame();
         }
-        if(Input.GetKeyDown(KeyCode.L)){ //If the player hits 'L' then load the main menu scene (this key bind is temporary for testing)
-            LoadMainMenu();
-        }
     }
     //This function pauses the game
     public void PauseGame(){ //Activates PauseMenu object, pauses time to 0 & sets pause bool to true

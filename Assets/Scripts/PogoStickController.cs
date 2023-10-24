@@ -8,7 +8,8 @@ public class PogoStickController : MonoBehaviour
     public Transform bulletSpawnPoint; //Reference to bullet spawn point
     public GameObject bulletPrefab; //Reference to Bullet Prefab
     public GameObject bulletTeleporterPrefab; //Reference to TeleporterBullet Prefab
-    
+    public GameObject bulletTeleporterSlowPrefab; //Reference to TeleporterBullet Prefab
+
     [Header("Cooldown Timers")]
     //Teleporter Bullet
     [SerializeField] private float cooldownA = 1f; //Delays the time between shots
@@ -16,7 +17,9 @@ public class PogoStickController : MonoBehaviour
     //Regular Bullet
     [SerializeField] private float cooldownB = 1f; //Delays the time between shots
     private float nextShotB = 1f; //Determines if player can shoot again, we can tell if 1 second passed using this variable
-
+    //Slow Teleporter Bullet
+    [SerializeField] private float cooldownC = 1f; //Delays the time between shots
+    private float nextShotC = 1f; //Determines if player can shoot again, we can tell if 1 second passed using this variable
     void Update(){
         if(PauseMenu.isPaused == false && BeatGameMenu.isBeaten == false && GameOverMenu.isDead == false){
             HandleInput();  //HandleInput() function is used in update as it makes inputs more responsive. FixedUpdate is better for physics related code
@@ -26,11 +29,12 @@ public class PogoStickController : MonoBehaviour
     private void HandleInput(){
         HandleShoot();
         HandleShootTeleporter();
+        HandleShootSlowTeleporter();
     }
 
 
-
-    //Functions handles Teleporting Bullet shooting
+    
+    //Function handles Teleporting Bullet shooting
     private void HandleShootTeleporter(){
         //If player presses the key specified, there are no teleporter bullets & current time is greater than the current nextShot, call the ShootTeleporter() function
         if(Input.GetKeyDown(KeyCode.M) && TeleporterBullet.bulletCount == 0 && Time.time > nextShotA){
@@ -47,6 +51,15 @@ public class PogoStickController : MonoBehaviour
             nextShotB = Time.time + cooldownB;
         }
     }
+    //Function handles Slow Teleporting Bullet shooting
+    private void HandleShootSlowTeleporter(){
+        //If player presses the key specified, there are no teleporter bullets & current time is greater than the current nextShot, call the ShootTeleporter() function
+        if(Input.GetKeyDown(KeyCode.L) && TeleporterBulletSlow.bulletCountSlow == 0 && Time.time > nextShotC){
+            TeleporterBulletSlow.bulletCountSlow = TeleporterBulletSlow.bulletCountSlow + 1; //Adds 1 bullet to the teleporter bulletCount
+            ShootSlowTeleporter(); //Shoots teleporter bullet
+            nextShotC = Time.time + cooldownC; //Next shot will become whatever the current time is but added with the cooldown variable
+        }
+    }
 
 
 
@@ -58,6 +71,11 @@ public class PogoStickController : MonoBehaviour
     private void ShootTeleporter(){
         Instantiate(bulletTeleporterPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation); //Spawns clone of TeleporterBullet prefab at the bulletSpawnPoint transform position & rotation
     }
+    //Creates clone of whatever prefab bulletTeleporterSlowPrefab is set to in inspector
+    private void ShootSlowTeleporter(){
+        Instantiate(bulletTeleporterSlowPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation); //Spawns clone of TeleporterBullet prefab at the bulletSpawnPoint transform position & rotation
+    }
+
 
 
     /* OLD ROTATE BY MOUSE FUNCTION
