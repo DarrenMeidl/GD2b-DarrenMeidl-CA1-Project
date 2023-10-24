@@ -16,6 +16,15 @@ public class Bullet : MonoBehaviour
         //Transforms the bullet's rigidbody by the opposite of the green axis multiplied by the bulletSpeed amount
         rb.velocity = (transform.up * -1) * bulletSpeed;
     }
+    //Bullet velocity set in fixedupdate so that whenever the game is paused, finished or player died, bullets will freeze
+    void FixedUpdate(){
+        if(PauseMenu.isPaused == false && BeatGameMenu.isBeaten == false && GameOverMenu.isDead == false){
+            rb.velocity = (transform.up * -1) * bulletSpeed;
+        }
+        else{
+            rb.velocity = Vector3.zero;
+        }
+    }
 
 
     //When bullet hits another collider, execute code. I added extra functionality by also checking for a player object, so I can reuse this bullet prefab for the enemy turret

@@ -9,34 +9,47 @@ public class PogoStickController : MonoBehaviour
     public GameObject bulletPrefab; //Reference to Bullet Prefab
     public GameObject bulletTeleporterPrefab; //Reference to TeleporterBullet Prefab
     
-    [Header("Cooldown Timer")]
-    [SerializeField] private float cooldown = 1f; //Delays the time between shots
-    private float nextShot = 1f; //Determines if player can shoot again, we can tell if 1 second passed using this variable
+    [Header("Cooldown Timers")]
+    //Teleporter Bullet
+    [SerializeField] private float cooldownA = 1f; //Delays the time between shots
+    private float nextShotA = 1f; //Determines if player can shoot again, we can tell if 1 second passed using this variable
+    //Regular Bullet
+    [SerializeField] private float cooldownB = 1f; //Delays the time between shots
+    private float nextShotB = 1f; //Determines if player can shoot again, we can tell if 1 second passed using this variable
 
     void Update(){
         if(PauseMenu.isPaused == false && BeatGameMenu.isBeaten == false && GameOverMenu.isDead == false){
             HandleInput();  //HandleInput() function is used in update as it makes inputs more responsive. FixedUpdate is better for physics related code
         }
     }
+    //Handles all HandleX() functions
     private void HandleInput(){
         HandleShoot();
         HandleShootTeleporter();
     }
+
+
+
+    //Functions handles Teleporting Bullet shooting
+    private void HandleShootTeleporter(){
+        //If player presses the key specified, there are no teleporter bullets & current time is greater than the current nextShot, call the ShootTeleporter() function
+        if(Input.GetKeyDown(KeyCode.M) && TeleporterBullet.bulletCount == 0 && Time.time > nextShotA){
+            TeleporterBullet.bulletCount = TeleporterBullet.bulletCount + 1; //Adds 1 bullet to the teleporter bulletCount
+            ShootTeleporter(); //Shoots teleporter bullet
+            nextShotA = Time.time + cooldownA; //Next shot will become whatever the current time is but added with the cooldown variable
+        }
+    }
+    //Function handles Regular Bullet shooting
     private void HandleShoot(){
         //If player presses the key specified, calls the Shoot() function
-        if(Input.GetKeyDown(KeyCode.N)) {
+        if(Input.GetKeyDown(KeyCode.N) && Time.time > nextShotB) {
             Shoot();
+            nextShotB = Time.time + cooldownB;
         }
     }
 
-    private void HandleShootTeleporter(){
-        //If player presses the key specified, there are no teleporter bullets & current time is greater than the current nextShot, call the ShootTeleporter() function
-        if(Input.GetKeyDown(KeyCode.M) && TeleporterBullet.bulletCount == 0 && Time.time > nextShot){
-            TeleporterBullet.bulletCount = TeleporterBullet.bulletCount + 1; //Adds 1 bullet to the teleporter bulletCount
-            ShootTeleporter(); //Shoots teleporter bullet
-            nextShot = Time.time + cooldown; //Next shot will become whatever the current time is but added with the cooldown variable
-        }
-    }
+
+
     //Creates clone of whatever prefab bulletPrefab is set to in inspector
     private void Shoot(){
         Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation); //Spawns clone of Bullet prefab at the bulletSpawnPoint transform position & rotation
