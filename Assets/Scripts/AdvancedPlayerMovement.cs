@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 //Code from Naoise's class
+//Got timer code from tutorial, link: https://dennisse-pd.medium.com/how-to-create-a-cooldown-system-in-unity-4156f3a842ae
 
 //Require components forces the script to only attach to a gameobject with the set components in this case a 2d rigidbody & animator
 [RequireComponent(typeof(Rigidbody2D))]
@@ -20,6 +21,10 @@ public class AdvancedPlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundCheckPoint;
     [SerializeField] private LayerMask whatIsGround;
     
+    [Header("Walk Timer")]
+    [SerializeField] private float cooldownA = 1f; //Delays the time between plays
+    private float nextShotA = 1f; //Determines if audio manager can play clip again, we can tell if 1 second passed using this variable
+
     public Transform objA;
     //Gets the player's rigidbody & animator components and sets them to the body & anim fields
     private Rigidbody2D body;
@@ -83,8 +88,9 @@ public class AdvancedPlayerMovement : MonoBehaviour
         body.velocity = new Vector2(horizontalInput * speed, body.velocity.y); //Adds velocity to the rigidbody by creating a new vector2 which multiplies horizontalInput float by the speed float but keeps the y velocity the same
         anim.SetBool("walk", horizontalInput !=0); //sets the walk bool in the animator to true or false based on whether the horizontalInput field is equal to 0 or not i.e. if player IS moving horizontally (input != 0) then "walk" bool is true thus playing walk animation
         //If the player is moving & touching the ground then it calls the PlayFootstepSound() function from the AudioManager script
-        if(horizontalInput != 0 && grounded){
+        if(horizontalInput != 0 && grounded && Time.time > nextShotA){
             AudioManager.instance.PlayFootstepSound();
+            nextShotA = Time.time + cooldownA;
         }
         //If the player is moving right but they're not facing right OR if player is moving left but is facing right then call the Flip() function
         if((horizontalInput>0 && !facingRight) || (horizontalInput<0 && facingRight)){
@@ -94,7 +100,8 @@ public class AdvancedPlayerMovement : MonoBehaviour
     //If the player bool grounded is true & the space key is pressed, call the Jump() function
     private void HandleJump(){
         if(Input.GetKeyDown(KeyCode.Space) && grounded){
-            Jump();
+            Jump(); //Calls jump function
+            AudioManager.instance.PlayJumpSound(); //Plays jump sound from AudioManager
         }
     }
     

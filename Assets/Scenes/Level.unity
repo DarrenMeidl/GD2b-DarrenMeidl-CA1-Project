@@ -3589,14 +3589,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpSound: {fileID: 0}
-  footstepSound: {fileID: 0}
+  footstepSound: {fileID: 8300000, guid: 4c67a7cf3fc21f34e994c927f741d92e, type: 3}
   attackSound: {fileID: 0}
   enemyAttackSound: {fileID: 0}
   backgroundMusic: {fileID: 8300000, guid: d1d0059440e01c146a4d053b0dc498ad, type: 3}
   soundEffectSource: {fileID: 0}
+  walkSoundEffectSource: {fileID: 0}
   backgroundMusicSource: {fileID: 0}
   volume: 0.15
-  cooldownA: 1
+  volume1: 0.05
 --- !u!4 &1318867303
 Transform:
   m_ObjectHideFlags: 0
@@ -4484,6 +4485,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
+  cooldownA: 0.34
   objA: {fileID: 1225057800869877387, guid: 72a7de3bf5b49de4c85ad28dcf61331f, type: 3}
   grounded: 0
 --- !u!114 &1922518696

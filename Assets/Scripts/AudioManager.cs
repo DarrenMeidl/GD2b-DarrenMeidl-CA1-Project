@@ -1,28 +1,26 @@
 using System.Collections;
 using UnityEngine;
 //Got this code from Naoise's class
-//Got timer code from tutorial, link: https://dennisse-pd.medium.com/how-to-create-a-cooldown-system-in-unity-4156f3a842ae
 public class AudioManager : MonoBehaviour   //This will be a singleton, only 1 version exists & can't be destroyed
 {
     public static AudioManager instance;    //Same exact variable (not copy) that can be called across all scripts
     //Audio clips for jumping, walking, attacking, & background music
+    [Header("Audio Clips")]
     public AudioClip jumpSound;
     public AudioClip footstepSound;
     public AudioClip attackSound;
     public AudioClip enemyAttackSound;
     public AudioClip backgroundMusic;
-    //Seperate audio source for sound effects & background music, this allows background music to continue playing without interruption while other sound effects are playing
+    //Seperate audio source for sound effects, player walking & background music, this allows background music to continue playing without interruption while other sound effects are playing
+    [Header("Audio Sources")]
     public AudioSource soundEffectSource;
+    public AudioSource walkSoundEffectSource;
     public AudioSource backgroundMusicSource;
-    //Adjust volume for background music
-    [SerializeField] private float volume = 1;
 
-    [Header("Cooldowns")]
-    //Walk Timer
-    [SerializeField] private float cooldownA = 1f; //Delays the time between plays
-    private float nextShotA = 1f; //Determines if audio manager can play clip again, we can tell if 1 second passed using this variable
-    
-    
+    [Header("Volume Settings")]
+    [SerializeField] private float volume = 1; //Adjust volume for background music
+    [SerializeField] private float volume1 = 1; //Footstep volume
+
     
     
     //Awake executes before the game starts
@@ -36,23 +34,27 @@ public class AudioManager : MonoBehaviour   //This will be a singleton, only 1 v
             Destroy(gameObject);
             return;
         }
-        //Adds two audio source components to this game object
+        //Adds audio source components to this game object
         soundEffectSource = gameObject.AddComponent<AudioSource>(); //Sound effects
+        walkSoundEffectSource = gameObject.AddComponent<AudioSource>(); //Sound effects
         backgroundMusicSource = gameObject.AddComponent<AudioSource>(); //Music
 
         backgroundMusicSource.clip = backgroundMusic; //Sets the backgroundMusicSource clip component to whatever the backgroundMusic audio clip is
         backgroundMusicSource.loop = true; //Loops the background music
         backgroundMusicSource.Play(); //Plays the backgroud music source
-
-        SetBackgroundMusicVolume(volume); //Sets the volume before the game starts
+        
+        //Sets the volumes before the game starts
+        SetBackgroundMusicVolume(volume); 
+        SetFootstepSoundVolume(volume1);
     }
     //Plays the jumpSound audio clip on the soundEffectSource audio source once
     public void PlayJumpSound(){
         soundEffectSource.PlayOneShot(jumpSound);
     }
-    //Plays the footstepSound audio clip on the soundEffectSource audio source once
+    //Plays the footstepSound audio clip on the walkSoundEffectSource audio source once
     public void PlayFootstepSound(){
-        soundEffectSource.PlayOneShot(footstepSound);
+        walkSoundEffectSource.PlayOneShot(footstepSound);
+
     }
     //Plays the attackSound audio clip on the soundEffectSource audio source once
     public void PlayAttackSound(){
@@ -79,5 +81,9 @@ public class AudioManager : MonoBehaviour   //This will be a singleton, only 1 v
     //Passes in a volume float, gets the background music source volume & sets it to the volume float
     public void SetBackgroundMusicVolume(float volume){
         backgroundMusicSource.volume = volume;
+    }
+    //Passes in a volume float, gets the walk sound effect source volume & sets it to the volume float
+    public void SetFootstepSoundVolume(float volume1){
+        walkSoundEffectSource.volume = volume1;
     }
 }
