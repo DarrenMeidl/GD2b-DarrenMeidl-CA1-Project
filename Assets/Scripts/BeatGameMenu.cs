@@ -17,17 +17,14 @@ public class BeatGameMenu : MonoBehaviour
     public void EndGame(){
         isBeaten = true;
         beatGameMenu.SetActive(true);
-        AudioManager.instance.PlayGameFinishedSound();
-    }
-    //This function restarts the game
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); //Loads a scene by index, the index comes from the current active scene's index
+        AudioManager.instance.PauseBackgroundMusic(); //Pause background music
+        AudioManager.instance.PlayGameFinishedSound(); //Play victory sound
     }
 
     //This function loads the main menu scene, closes the beat game menu if it's still open & sets isBeaten to false
     public void LoadMainMenu()
     {
+        AudioManager.instance.PlayBackgroundMusic(); //Resumes background music
         Time.timeScale = 1f;
         beatGameMenu.SetActive(false);
         isBeaten = false;
