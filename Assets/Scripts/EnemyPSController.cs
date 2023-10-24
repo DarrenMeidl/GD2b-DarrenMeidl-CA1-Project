@@ -20,7 +20,6 @@ public class EnemyPSController : MonoBehaviour
     //Shoot is set up on a cooldown timer
     public void Shoot(){
         timer -= Time.deltaTime;
-        //If Enemy meets X condition, call the Shoot() function
         if(timer > 0){
             return;   
         }

@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //Code from unity tutorial, link: https://www.youtube.com/watch?v=wkKsl1Mfp5M&ab_channel=Brackeys
+//Cooldown timer code from tutorial, link: https://dennisse-pd.medium.com/how-to-create-a-cooldown-system-in-unity-4156f3a842ae
 public class PogoStickController : MonoBehaviour
 {
     public Transform bulletSpawnPoint; //Reference to bullet spawn point
     public GameObject bulletPrefab; //Reference to Bullet Prefab
     public GameObject bulletTeleporterPrefab; //Reference to TeleporterBullet Prefab
     
+    [Header("Cooldown Timer")]
+    [SerializeField] private float cooldown = 1f; //Delays the time between shots
+    private float nextShot = 1f; //Determines if player can shoot again, we can tell if 1 second passed using this variable
+
     void Update(){
         if(PauseMenu.isPaused == false && BeatGameMenu.isBeaten == false && GameOverMenu.isDead == false){
             HandleInput();  //HandleInput() function is used in update as it makes inputs more responsive. FixedUpdate is better for physics related code
@@ -19,16 +24,17 @@ public class PogoStickController : MonoBehaviour
     }
     private void HandleShoot(){
         //If player presses the key specified, calls the Shoot() function
-        if(Input.GetKeyDown(KeyCode.N)){
+        if(Input.GetKeyDown(KeyCode.N)) {
             Shoot();
         }
     }
 
     private void HandleShootTeleporter(){
-        //If player presses the key specified & there are no teleporter bullets, calls the ShootTeleporter() function
-        if(Input.GetKeyDown(KeyCode.M) && TeleporterBullet.bulletCount == 0){
+        //If player presses the key specified, there are no teleporter bullets & current time is greater than the current nextShot, call the ShootTeleporter() function
+        if(Input.GetKeyDown(KeyCode.M) && TeleporterBullet.bulletCount == 0 && Time.time > nextShot){
             TeleporterBullet.bulletCount = TeleporterBullet.bulletCount + 1; //Adds 1 bullet to the teleporter bulletCount
-            ShootTeleporter();
+            ShootTeleporter(); //Shoots teleporter bullet
+            nextShot = Time.time + cooldown; //Next shot will become whatever the current time is but added with the cooldown variable
         }
     }
     //Creates clone of whatever prefab bulletPrefab is set to in inspector
