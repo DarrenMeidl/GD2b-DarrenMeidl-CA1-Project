@@ -15,7 +15,9 @@ public class EnemyPSController : MonoBehaviour
     }
     //Calls Shoot during FixedUpdate
     void FixedUpdate(){
-        Shoot();
+        if(PauseMenu.isPaused == false && BeatGameMenu.isBeaten == false && GameOverMenu.isDead == false){
+            Shoot();
+        }
     }
     //Shoot is set up on a cooldown timer
     public void Shoot(){

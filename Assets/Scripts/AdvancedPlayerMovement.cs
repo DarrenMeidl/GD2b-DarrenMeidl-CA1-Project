@@ -25,7 +25,6 @@ public class AdvancedPlayerMovement : MonoBehaviour
     [SerializeField] private float cooldownA = 1f; //Delays the time between plays
     private float nextShotA = 1f; //Determines if audio manager can play clip again, we can tell if 1 second passed using this variable
 
-    public Transform objA;
     //Gets the player's rigidbody & animator components and sets them to the body & anim fields
     private Rigidbody2D body;
     private Animator anim;
