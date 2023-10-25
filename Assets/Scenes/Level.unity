@@ -975,10 +975,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 0}
-  buttonRange: 0.8
-  playerLayers:
-    serializedVersion: 2
-    m_Bits: 1
 --- !u!61 &421714855
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20901,10 +20897,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 2044389138}
-  buttonRange: 0.8
-  playerLayers:
-    serializedVersion: 2
-    m_Bits: 1
 --- !u!212 &605241981
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -97409,37 +97401,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2120561110583609571, guid: 42554b6faa8eb784db148db6cd800a8e, type: 3}
   m_PrefabInstance: {fileID: 1598172430}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1615049417
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1615049418}
-  m_Layer: 0
-  m_Name: WallCheck
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1615049418
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1615049417}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1922518694}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1635765056
 GameObject:
   m_ObjectHideFlags: 0
@@ -98106,7 +98067,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &1922518691
 CapsuleCollider2D:
@@ -98233,7 +98194,6 @@ Transform:
   m_Children:
   - {fileID: 304507878}
   - {fileID: 966371562}
-  - {fileID: 1615049418}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -98270,8 +98230,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0128d2f3dd9311940a7b8bd7807dc94d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 1
-  maxAttackDamage: 5
   enemyLayers:
     serializedVersion: 2
     m_Bits: 128

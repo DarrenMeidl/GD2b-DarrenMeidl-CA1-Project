@@ -5,11 +5,6 @@ using UnityEngine;
 //Sorted original functions into groups of new functions for readability
 public class PlayerHealth : MonoBehaviour
 {
-    //Fields for combat: attack range, damage & maximum attack damage underneath a header which appears in the inspector tab
-    [Header("Combat Settings")]
-    private int attackDamage;
-    [SerializeField] private float attackRange = 1f;
-    [SerializeField] private int maxAttackDamage = 5;
     //HealthBar will access these fields
     [Header("Health Settings")]
     public static int playerMaxHealth = 3;
@@ -20,7 +15,6 @@ public class PlayerHealth : MonoBehaviour
 
     // Awake is called before the game starts
     void Awake(){
-        attackDamage = maxAttackDamage; //Sets current attack damage to full
         currentPlayerHealth = playerMaxHealth; //Sets current health to full
         gom = GameObject.FindGameObjectWithTag("GameOver").GetComponent<GameOverMenu>(); //Finds GameOverMenu object through tag "GameOver" & sets it to 'gom' reference
     }
@@ -46,40 +40,4 @@ public class PlayerHealth : MonoBehaviour
 
         }
     }
-
-
-
-
-
-
-    /*//this function calls the attack() function only if the specified key is pressed
-    public void HandleAttack(){
-        if (Input.GetKeyDown(KeyCode.F)){
-            Debug.Log("YOU HIT F");
-            Attack();
-        }
-    }*/
-
-    /*//This function deals the player's attack damage to any object that is considered an enemy
-    void Attack(){
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackRange, enemyLayers); //Gets a collider that's within in a circle (created at the player's position, with a radius of 'attackRange', only in the layer specified in the inspector) & stores it in the 'hitEnemies' collider list
-        foreach (Collider2D enemy in hitEnemies)    //For every 2d collider (called enemy) that is in the list of hitEnemies 2d colliders, it will carry out the code below
-        {
-            //enemyController is assigned the Collider2D enemy's component: EnemyController 
-            EnemyController enemyController = enemy.GetComponent<EnemyController>();
-            //If the enemyController is not nothing, then it will call the TakeDamage() function from the EnemyController script & pass in the player's field attackDamage which is set above
-            if (enemyController != null) //If it does have EnemyController component
-            {
-                enemyController.TakeDamage(attackDamage); //Call takedamage() function to enemy
-                AudioManager.instance.PlayAttackSound(); //calls the PlayAttackSound() function from the AudioManager script
-                Debug.Log("Enemy Damaged!");    //Prints message in console, to test if enemy has been damaged
-            }
-
-        }
-    }
-    //Function that draws a gizmo in the scene view
-    void OnDrawGizmosSelected(){
-        Gizmos.color = Color.red;   //Sets gizmo colour to red
-        Gizmos.DrawWireSphere(transform.position, attackRange); //Draws a sphere at the player's current position with a radius of whatever 'attackRange' field is set to
-    }*/
 }
