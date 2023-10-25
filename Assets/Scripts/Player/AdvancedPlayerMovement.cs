@@ -81,6 +81,7 @@ public class AdvancedPlayerMovement : MonoBehaviour
         HandleJump();
         HandleMovement();
     }
+
     //this function performs the walking movement for the player
     private void HandleMovement(){
         float horizontalInput = Input.GetAxisRaw("Horizontal"); //Gets the horizontal axis & stores in a field

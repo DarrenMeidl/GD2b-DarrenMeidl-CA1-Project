@@ -37,7 +37,7 @@ public class PogoStickController : MonoBehaviour
     //Function handles Teleporting Bullet shooting
     private void HandleShootTeleporter(){
         //If player presses the key specified, there are no teleporter bullets & current time is greater than the current nextShot, call the ShootTeleporter() function
-        if(Input.GetKeyDown(KeyCode.M) && TeleporterBullet.bulletCount == 0 && Time.time > nextShotA){
+        if(Input.GetMouseButtonDown(2) && TeleporterBullet.bulletCount == 0 && Time.time > nextShotA){
             TeleporterBullet.bulletCount = TeleporterBullet.bulletCount + 1; //Adds 1 bullet to the teleporter bulletCount
             ShootTeleporter(); //Shoots teleporter bullet
             nextShotA = Time.time + cooldownA; //Next shot will become whatever the current time is but added with the cooldown variable
@@ -46,7 +46,7 @@ public class PogoStickController : MonoBehaviour
     //Function handles Regular Bullet shooting
     private void HandleShoot(){
         //If player presses the key specified, calls the Shoot() function
-        if(Input.GetKeyDown(KeyCode.N) && Time.time > nextShotB) {
+        if(Input.GetMouseButtonDown(0) && Time.time > nextShotB) {
             Shoot();
             nextShotB = Time.time + cooldownB;
         }
@@ -54,7 +54,7 @@ public class PogoStickController : MonoBehaviour
     //Function handles Slow Teleporting Bullet shooting
     private void HandleShootSlowTeleporter(){
         //If player presses the key specified, there are no teleporter bullets & current time is greater than the current nextShot, call the ShootTeleporter() function
-        if(Input.GetKeyDown(KeyCode.L) && TeleporterBulletSlow.bulletCountSlow == 0 && Time.time > nextShotC){
+        if(Input.GetMouseButtonDown(1) && TeleporterBulletSlow.bulletCountSlow == 0 && Time.time > nextShotC){
             TeleporterBulletSlow.bulletCountSlow = TeleporterBulletSlow.bulletCountSlow + 1; //Adds 1 bullet to the teleporter bulletCount
             ShootSlowTeleporter(); //Shoots teleporter bullet
             nextShotC = Time.time + cooldownC; //Next shot will become whatever the current time is but added with the cooldown variable

@@ -211,5 +211,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0309ca2429f7d97488f7ca2bc346ee3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minY: -10
+  minY: -30
   screenBuffer: 1

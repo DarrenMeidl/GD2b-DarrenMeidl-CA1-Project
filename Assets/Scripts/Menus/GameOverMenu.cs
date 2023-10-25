@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 //Repurposed code from unity tutorial, link: https://www.youtube.com/watch?v=9dYDBomQpBQ&ab_channel=BMo
 public class GameOverMenu : MonoBehaviour
 {
+    public static GameOverMenu gameOverMenuInstance;
     public GameObject gameoverMenu; //Used to reference GameOverMenu object
     public static bool isDead; //public bool to determines if player is dead or not
     // Awake is called before the game starts
@@ -12,6 +13,11 @@ public class GameOverMenu : MonoBehaviour
         isDead = false;
         Time.timeScale = 1f;
         gameoverMenu.SetActive(false);
+    }
+    void Update(){
+        if(Input.GetKeyDown(KeyCode.R)){
+            RestartGame();
+        }
     }
     //This function ends the game
     public void GameOver()
