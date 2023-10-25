@@ -27,6 +27,5 @@ public class EnemyPSController : MonoBehaviour
         }
         timer = cooldown;
         Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation); //Spawns clone of Bullet prefab at the bulletSpawnPoint transform position & rotation
-        AudioManager.instance.PlayEnemyAttackSound();
     }
 }
