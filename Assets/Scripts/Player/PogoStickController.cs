@@ -20,6 +20,11 @@ public class PogoStickController : MonoBehaviour
     //Slow Teleporter Bullet
     [SerializeField] private float cooldownC = 1f; //Delays the time between shots
     private float nextShotC = 1f; //Determines if player can shoot again, we can tell if 1 second passed using this variable
+    
+    void Start(){
+        TeleporterBullet.bulletCount = 0;
+        TeleporterBulletSlow.bulletCountSlow = 0;
+    }
     void Update(){
         if(PauseMenu.isPaused == false && BeatGameMenu.isBeaten == false && GameOverMenu.isDead == false){
             HandleInput();  //HandleInput() function is used in update as it makes inputs more responsive. FixedUpdate is better for physics related code

@@ -67,11 +67,11 @@ public class AdvancedPlayerMovement : MonoBehaviour
 
     //Functions handles teleporting
     private void HandleTeleport(){
-        if (Input.GetKeyDown(KeyCode.G) || TeleporterBullet.hasContacted == true){
+        if (TeleporterBullet.hasContacted == true){
             transform.position = TeleporterBullet.contactPoint; //Changes player position to the contactPoint position
             TeleporterBullet.hasContacted = false; //Resets hasContacted bool to prevent player endlessly teleporting to contact point
         }
-        if (Input.GetKeyDown(KeyCode.O) || TeleporterBulletSlow.hasContactedSlow == true){
+        if (TeleporterBulletSlow.hasContactedSlow == true){
             transform.position = TeleporterBulletSlow.contactPointSlow; //Changes player position to the contactPointSlow position
             TeleporterBulletSlow.hasContactedSlow = false; //Resets hasContactedSlow bool to prevent player endlessly teleporting to contact point
         }
