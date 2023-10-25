@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 0}
-  leverRange: 1
+  leverRange: 0.6
   playerLayers:
     serializedVersion: 2
     m_Bits: 1
@@ -2694,7 +2694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 1197262199}
-  leverRange: 1
+  leverRange: 0.6
   playerLayers:
     serializedVersion: 2
     m_Bits: 1
@@ -4418,6 +4418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72a886de853368f49aca76b963d9f556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ySpeed: 1
   cooldownA: 1
 --- !u!61 &1197262201
 BoxCollider2D:
@@ -5391,6 +5392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72a886de853368f49aca76b963d9f556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ySpeed: 1
   cooldownA: 1
 --- !u!1 &1385694264
 GameObject:

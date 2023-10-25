@@ -5,12 +5,13 @@ using UnityEngine;
 public class LeverController : MonoBehaviour
 {
     public GameObject door;
+    private bool leverRight;
     [SerializeField] private float leverRange = 1f;
     [SerializeField] private LayerMask playerLayers;
     // Start is called before the first frame update
     void Start()
     {
-        //door = GameObject.Find("Door (1)");
+        leverRight = true; //Lever always defaults to facing right
     }
 
     void Update(){
@@ -20,6 +21,14 @@ public class LeverController : MonoBehaviour
                 PlayerHealth playerObj = player.GetComponent<PlayerHealth>(); //Grabs PlayerHealth component from other collider
                 if (playerObj != null){ //If this isn't nothing, so IS an object with PlayerHealth script, activate lever
                     ActivateLever();
+                    if(leverRight){ //if it's facing right, rotate left
+                        gameObject.transform.Rotate(0, 0, 90);
+                        leverRight = false; //Set leverRight to false
+                    }
+                    else {
+                        gameObject.transform.Rotate(0, 0, -90); //Otherwise, rotate right
+                        leverRight = true;
+                    }
                 }
             }
         }
