@@ -265,6 +265,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 0}
+  leverRange: 1
+  playerLayers:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1001 &152138356
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2690,6 +2694,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 1197262199}
+  leverRange: 1
+  playerLayers:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!61 &869042915
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -77,9 +77,9 @@ public class EnemyController : MonoBehaviour
         Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(transform.position, attackRange, playerLayers); //Gets list of colliders that fall in a circle (created at the player's position, with a radius of 'attackRange', only in the enemyLayers layer specified in the inspector) & stores them in 'hitPlayers' 
         foreach (Collider2D player in hitPlayers)    //For every enemy 2d collider that is in the list of hitEnemies collider, it will carry out the code below
         {
-            //enemyController is assigned the Collider2D enemy's component: EnemyController 
+            //playerHealth is assigned the Collider2D player's component: PlayerHealth 
             PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
-            //If the playerHealth is not nothing, then it will call the TakeDamage() function from the EnemyController script & pass in the player's field attackDamage which is set above
+            //If the playerHealth is not nothing, then it will call the TakeDamage() function from the PlayerHealth script & pass in the enemy's field attackDamage which is set above
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(attackDamage);
