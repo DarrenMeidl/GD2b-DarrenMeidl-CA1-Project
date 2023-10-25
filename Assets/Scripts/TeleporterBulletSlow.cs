@@ -24,8 +24,8 @@ public class TeleporterBulletSlow : MonoBehaviour
     }
 
     void Update(){
-            Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        if(Input.GetKeyDown(KeyCode.F) && hasContactedSlow == false){
+            Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position; //Sets direction vector to wherever the mouse is located
+        if(Input.GetKeyDown(KeyCode.F)){ //If the player hits F, the bullet will change to the direction of direction variable
             rb.velocity = direction.normalized * bulletSpeed;
         }
     }
