@@ -43,9 +43,6 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(false);
         SceneManager.LoadScene("Main Menu"); //Loads the scene by name
         isPaused = false;
-    }
-    //Closes the application
-    public void QuitGame(){
-        Application.Quit();
+        AudioManager.instance.PlayBackgroundMusic();
     }
 }
