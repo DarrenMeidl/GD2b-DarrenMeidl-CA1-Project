@@ -13,7 +13,8 @@ public class LeverController : MonoBehaviour
     {
         leverRight = true; //Lever always defaults to facing right
     }
-
+    
+    // Update is called once per frame
     void Update(){
         if(Input.GetKeyDown(KeyCode.E)){
             Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(transform.position, leverRange, playerLayers); //Gets list of colliders that fall in a circle (created at the lever's position, with a radius of 'leverRange', (only in the playerLayers layer specified in the inspector) & stores them in 'hitPlayers' 
@@ -35,16 +36,13 @@ public class LeverController : MonoBehaviour
     }
 
     void ActivateLever(){
-        door.GetComponent<DoorController>().SetOpenable(true);
+        door.GetComponent<DoorController>().SetLeverOpenable(true);
     }
 
     /*public void OnTriggerEnter2D(Collider2D other){
         PlayerHealth player = other.GetComponent<PlayerHealth>(); //Grabs PlayerHealth component from other collider, if there is one
         if (player != null){ //If this isn't nothing, so IS an object with PlayerHealth script, activate lever
         ActivateLever();
-        }
-        else{
-            return;
         }
     }*/
 }
