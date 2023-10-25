@@ -86,7 +86,7 @@ public class AdvancedPlayerMovement : MonoBehaviour
     private void HandleMovement(){
         float horizontalInput = Input.GetAxisRaw("Horizontal"); //Gets the horizontal axis & stores in a field
         body.velocity = new Vector2(horizontalInput * speed, body.velocity.y); //Adds velocity to the rigidbody by creating a new vector2 which multiplies horizontalInput float by the speed float but keeps the y velocity the same
-        anim.SetBool("walk", horizontalInput !=0); //sets the walk bool in the animator to true or false based on whether the horizontalInput field is equal to 0 or not i.e. if player IS moving horizontally (input != 0) then "walk" bool is true thus playing walk animation
+        anim.SetBool("walk", horizontalInput !=0); //sets the walk bool in the animator to true or false based on whether the horizontalInput field is equal to 0 or not i.e. if player IS moving horizontally then play walk animation
         //If the player is moving & touching the ground then it calls the PlayFootstepSound() function from the AudioManager script
         if(horizontalInput != 0 && grounded && Time.time > nextShotA){
             AudioManager.instance.PlayFootstepSound();
