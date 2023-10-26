@@ -3,7 +3,7 @@ Pogo Mountain: The Demo is well.... a demo. Your goal? Reach the top of the Moun
 
 This game is heavily inspired by Teleportorium by Logan Lang! 
 
-VIDEO LINK: 
+VIDEO LINK: https://youtu.be/QZ3DUyTUsQ4
 
 CONTROLS:
 A/D - Walk left/right
